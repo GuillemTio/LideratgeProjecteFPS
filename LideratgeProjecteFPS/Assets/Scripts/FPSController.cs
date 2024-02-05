@@ -176,7 +176,7 @@ public class FPSController : MonoBehaviour
         }
 
         currentMovementForce += inputMovementForce;
-        Debug.Log(currentMovementForce);
+        //Debug.Log(currentMovementForce);
         m_CharacterController.Move(currentMovementForce);
 
         //limitar velocidad segun el vector que se genera
