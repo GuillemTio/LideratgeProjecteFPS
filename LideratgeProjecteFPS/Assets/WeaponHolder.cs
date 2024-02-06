@@ -10,6 +10,7 @@ public class WeaponHolder : MonoBehaviour
     [SerializeField] private KeyCode m_ShootKeyCode = KeyCode.Mouse0;
     [SerializeField] private KeyCode m_AimKeyCode = KeyCode.Mouse1;
     [SerializeField] private KeyCode m_ChangeWeaponKeyCode = KeyCode.Q;
+
     [SerializeField] private string m_NextWeaponName;
     List<Weapon> m_WeaponList;
 
