@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 172436140}
   - component: {fileID: 172436139}
   - component: {fileID: 172436138}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 427312181}
   - component: {fileID: 427312180}
   - component: {fileID: 427312179}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 612992670}
   - component: {fileID: 612992671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 805639343}
   - component: {fileID: 805639344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 934617586}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PitchController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -772,40 +772,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1085434972}
   - component: {fileID: 1085434971}
-  - component: {fileID: 1085434970}
-  m_Layer: 0
+  - component: {fileID: 1085434973}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!143 &1085434970
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085434969}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.02, z: 0}
 --- !u!114 &1085434971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,16 +799,16 @@ MonoBehaviour:
   m_MaxPitch: 60
   m_PitchSpeed: 180
   m_YawSpeed: 360
-  maxSpeed: 0
-  maxSprintSpeed: 0
-  acceleration: 1e-12
-  jumpForce: 0
-  m_Speed: 10
-  m_VerticalSpeed: 0
-  m_SprintSpeed: 16
-  m_JumpSpeed: 7
-  m_LastTimeOnFloor: 0
+  m_MoveSpeed: 25
+  m_RigidBody: {fileID: 1085434973}
+  m_PlayerBody: {fileID: 1670645893}
+  m_PlayerHeight: 2
+  m_GroundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  m_JumpForce: 5
   m_Camera: {fileID: 963194227}
+  m_CharacterController: {fileID: 0}
   m_LeftKeyCode: 97
   m_RightKeyCode: 100
   m_UpKeyCode: 119
@@ -863,6 +837,33 @@ Transform:
   - {fileID: 934617586}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1085434973
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085434969}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!1 &1176356909
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,7 +874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1176356910}
   - component: {fileID: 1176356911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +926,7 @@ GameObject:
   - component: {fileID: 1303257915}
   - component: {fileID: 1303257914}
   - component: {fileID: 1303257913}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482725249}
   - component: {fileID: 1482725250}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1080,7 +1081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1546642044}
   - component: {fileID: 1546642045}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1122,7 +1123,7 @@ MonoBehaviour:
   m_ShootKeyCode: 323
   m_AimKeyCode: 324
   m_ChangeWeaponKeyCode: 113
-  m_InitialWeaponID: 0
+  m_NextWeaponName: 
 --- !u!1 &1647485520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,7 +1136,7 @@ GameObject:
   - component: {fileID: 1647485524}
   - component: {fileID: 1647485523}
   - component: {fileID: 1647485522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1242,7 +1243,7 @@ GameObject:
   - component: {fileID: 1660191678}
   - component: {fileID: 1660191677}
   - component: {fileID: 1660191676}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1348,6 +1349,7 @@ GameObject:
   - component: {fileID: 1670645894}
   - component: {fileID: 1670645896}
   - component: {fileID: 1670645895}
+  - component: {fileID: 1670645897}
   m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
@@ -1420,6 +1422,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670645893}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!136 &1670645897
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670645893}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1776948457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,7 +1455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1776948458}
   - component: {fileID: 1776948459}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1482,7 +1507,7 @@ GameObject:
   - component: {fileID: 2031934480}
   - component: {fileID: 2031934479}
   - component: {fileID: 2031934478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
