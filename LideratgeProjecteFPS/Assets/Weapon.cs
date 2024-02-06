@@ -3,11 +3,13 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    protected WeaponHolder m_Holder;
+    
     [Header("Weapon Settings")]
-    [SerializeField] int m_MaxAmmo;
-    [SerializeField] float m_FireRate;
-    [SerializeField] float m_Damage;
-    [SerializeField] float m_Range;
+    [SerializeField] protected int m_MaxAmmo;
+    [SerializeField] protected float m_FireRate;
+    [SerializeField] protected float m_Damage;
+    [SerializeField] protected float m_Range;
 
     [SerializeField] protected int m_CurrentAmmo;
     protected float m_LastTimeShoot;
@@ -17,7 +19,7 @@ public abstract class Weapon : MonoBehaviour
     private void Awake()
     {
         ResetAmmo();
-
+        m_Holder = GetComponentInParent<WeaponHolder>();
     }
     private void ResetAmmo()
     {
