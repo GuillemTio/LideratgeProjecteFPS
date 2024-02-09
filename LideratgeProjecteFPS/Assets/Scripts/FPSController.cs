@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 public class FPSController : MonoBehaviour
 {
@@ -18,26 +17,19 @@ public class FPSController : MonoBehaviour
     public float m_PitchSpeed;
     public float m_YawSpeed;
 
-    [Header("NewMovement")]
-    public float maxSpeed;
-    public float maxSprintSpeed;
-    public float acceleration;
-    public float jumpForce;
-    private Vector3 currentMovementForce;
-
-    [Header("OldMovement")]
-    public float m_Speed;
-    public float m_VerticalSpeed;
-    public float m_SprintSpeed;
-    public float m_JumpSpeed;
-    public float m_LastTimeOnFloor;
+    [Header("Movement")]
+    public float m_MoveSpeed;
+    public Rigidbody m_RigidBody;
+    public GameObject m_PlayerBody;
+    public float m_PlayerHeight;
+    public LayerMask m_GroundLayer;
+    bool m_IsOnGround;
+    public float m_JumpForce;
 
     Vector3 m_StartPosition;
     Quaternion m_StartRotation;
 
     public Camera m_Camera;
-
-    CharacterController m_CharacterController;
 
     [Header("Input")]
 
@@ -56,31 +48,6 @@ public class FPSController : MonoBehaviour
     bool m_AimLocked = true;
     public KeyCode m_DebugLockAngleKeyCode = KeyCode.I;
     public KeyCode m_DebugLockKeyCode = KeyCode.O;
-
-    private void Awake()
-    {
-        m_CharacterController = GetComponent<CharacterController>();
-
-        /*
-        if (GameController.GetGameController().m_Player == null)
-        {
-            GameController.GetGameController().m_Player = this;
-            GameObject.DontDestroyOnLoad(gameObject);
-            m_StartPosition = transform.position;
-            m_StartRotation = transform.rotation;
-            SetAmmo();
-            SetHealthShield();
-            SetScore();
-
-            m_Yaw = transform.rotation.eulerAngles.y;
-        }
-        else
-        {
-            GameController.GetGameController().m_Player.SetStartPosition(transform);
-            GameObject.Destroy(this.gameObject);
-        }
-        */
-    }
 
     void Start()
     {
@@ -103,6 +70,24 @@ public class FPSController : MonoBehaviour
         }
 #endif
 
+
+        //Debug.Log(m_RigidBody.velocity.magnitude);
+
+        m_IsOnGround = Physics.Raycast(m_PlayerBody.transform.position, Vector3.down, m_PlayerHeight / 2 + 0.2f, m_GroundLayer);
+
+        if (m_IsOnGround)
+        {
+            if (Input.GetKeyDown(m_JumpKeyCode))
+            {
+                m_RigidBody.AddForce(transform.up * m_JumpForce, ForceMode.Impulse);
+            }
+        }
+
+
+    }
+
+    private void FixedUpdate()
+    {
         float l_HorizontalMovement = Input.GetAxis("Mouse X");
         float l_VerticalMovement = Input.GetAxis("Mouse Y");
 
@@ -110,89 +95,6 @@ public class FPSController : MonoBehaviour
         {
             l_HorizontalMovement = 0f;
             l_VerticalMovement = 0f;
-        }
-
-        float l_YawInverted = m_YawInverted ? -1f : 1f;
-        float l_PitchInverted = m_PitchInverted ? -1f : 1f;
-
-        m_Yaw = m_Yaw + m_YawSpeed * l_HorizontalMovement * Time.deltaTime * l_YawInverted;
-        m_Pitch = m_Pitch + m_PitchSpeed * l_VerticalMovement * Time.deltaTime * l_PitchInverted;
-        m_Pitch = Mathf.Clamp(m_Pitch, m_MinPitch, m_MaxPitch);
-
-        transform.rotation = Quaternion.Euler(0.0f, m_Yaw, 0.0f);
-        m_PitchController.localRotation = Quaternion.Euler(m_Pitch, 0.0f, 0.0f);
-
-        float l_YawInRadians = m_Yaw * Mathf.Deg2Rad;
-        float l_Yaw90InRadians = (m_Yaw + 90) * Mathf.Deg2Rad;
-
-        Vector3 l_Forward = new Vector3(Mathf.Sin(l_YawInRadians), 0, Mathf.Cos(l_YawInRadians));
-        Vector3 l_Right = new Vector3(Mathf.Sin(l_Yaw90InRadians), 0, Mathf.Cos(l_Yaw90InRadians));
-
-
-        Vector3 movementDirection = Vector3.zero;
-
-        if (Input.GetKey(m_LeftKeyCode))
-        {
-            movementDirection -= l_Right;
-        }
-        if (Input.GetKey(m_RightKeyCode))
-        {
-            movementDirection += l_Right;
-        }
-        if (Input.GetKey(m_UpKeyCode))
-        {
-            movementDirection += l_Forward;
-        }
-        if (Input.GetKey(m_DownKeyCode))
-        {
-            movementDirection -= l_Forward;
-        }
-
-        movementDirection.Normalize();
-
-        Vector3 inputMovementForce = movementDirection * acceleration * Time.deltaTime;
-        if(inputMovementForce.x == 0 && currentMovementForce.x != 0 )
-        {
-            if (currentMovementForce.x > 0)
-            {
-                inputMovementForce.x = Math.Max(0, currentMovementForce.x - acceleration);
-            }
-            else if (currentMovementForce.x < 0)
-            {
-                inputMovementForce.x = Math.Min(0, currentMovementForce.x + acceleration);
-            }
-        }
-
-        if (inputMovementForce.y == 0 && currentMovementForce.y != 0)
-        {
-            if (currentMovementForce.y > 0)
-            {
-                inputMovementForce.y = Math.Max(0, currentMovementForce.y - acceleration);
-            }
-            else if (currentMovementForce.x < 0)
-            {
-                inputMovementForce.y = Math.Min(0, currentMovementForce.y + acceleration);
-            }
-        }
-
-        currentMovementForce += inputMovementForce;
-        //Debug.Log(currentMovementForce);
-        m_CharacterController.Move(currentMovementForce);
-
-        //limitar velocidad segun el vector que se genera
-
-        /* float l_Speed = m_Speed;
-
-        m_LastTimeOnFloor += Time.deltaTime;
-
-        if (Input.GetKeyDown(m_JumpKeyCode) && m_VerticalSpeed == 0)
-        {
-            m_VerticalSpeed = m_JumpSpeed;
-        }
-
-        if (Input.GetKey(m_SprintKeyCode))
-        {
-            l_Speed = m_SprintSpeed;
         }
 
         float l_YawInverted = m_YawInverted ? -1f : 1f;
@@ -233,31 +135,18 @@ public class FPSController : MonoBehaviour
 
         l_Movement.Normalize();
 
-        l_Movement *= l_Speed * Time.deltaTime;
+        Debug.Log(l_Movement);
 
-        m_VerticalSpeed = m_VerticalSpeed + Physics.gravity.y * Time.deltaTime;
-        l_Movement.y = m_VerticalSpeed * Time.deltaTime;
+        m_RigidBody.AddForce(l_Movement * m_MoveSpeed, ForceMode.Force);
 
-
-        CollisionFlags l_CollisionFlags = m_CharacterController.Move(l_Movement);
-        if ((l_CollisionFlags & CollisionFlags.CollidedBelow) != 0)
-            m_VerticalSpeed = 0f;
-        m_LastTimeOnFloor = 0.0f;
-        if ((l_CollisionFlags & CollisionFlags.CollidedBelow) != 0 && m_VerticalSpeed > 0f)
-            m_VerticalSpeed = 0f;
-
-
-        //m_CharacterController.Move(l_Movement);
-
-        if (Input.GetKeyDown(m_JumpKeyCode) && m_VerticalSpeed == 0.0f)
+        //SPEED CONTROL
+        Vector3 l_FlatVel = new Vector3(m_RigidBody.velocity.x, 0, m_RigidBody.velocity.z);
+        if (l_FlatVel.magnitude > m_MoveSpeed)
         {
-            m_VerticalSpeed = m_JumpSpeed;
+            Vector3 l_LimitedVel = l_FlatVel.normalized * m_MoveSpeed;
+            m_RigidBody.velocity = new Vector3(l_LimitedVel.x, m_RigidBody.velocity.y, l_LimitedVel.z);
         }
-        */
-
-
     }
-
 
 
 
