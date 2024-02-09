@@ -799,7 +799,7 @@ MonoBehaviour:
   m_MaxPitch: 60
   m_PitchSpeed: 180
   m_YawSpeed: 360
-  m_MoveSpeed: 25
+  m_MoveSpeed: 20
   m_RigidBody: {fileID: 1085434973}
   m_PlayerBody: {fileID: 1670645893}
   m_PlayerHeight: 2
@@ -808,7 +808,6 @@ MonoBehaviour:
     m_Bits: 128
   m_JumpForce: 5
   m_Camera: {fileID: 963194227}
-  m_CharacterController: {fileID: 0}
   m_LeftKeyCode: 97
   m_RightKeyCode: 100
   m_UpKeyCode: 119
@@ -846,7 +845,7 @@ Rigidbody:
   m_GameObject: {fileID: 1085434969}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
