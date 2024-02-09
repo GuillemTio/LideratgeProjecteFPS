@@ -134,7 +134,7 @@ public class FPSController : MonoBehaviour
 
         l_Movement.Normalize();
 
-        Debug.Log(l_Movement);
+        //Debug.Log(l_Movement);
 
         m_RigidBody.AddForce(l_Movement * m_MoveSpeed, ForceMode.Force);
 

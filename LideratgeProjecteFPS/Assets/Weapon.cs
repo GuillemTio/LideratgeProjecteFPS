@@ -4,14 +4,16 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     protected WeaponHolder m_Holder;
-    
+
     [Header("Weapon Settings")]
     [SerializeField] protected int m_MaxAmmo;
     [SerializeField] protected float m_FireRate;
     [SerializeField] protected float m_Damage;
     [SerializeField] protected float m_Range;
-
     [SerializeField] protected int m_CurrentAmmo;
+    //[SerializeField] protected bool m_HasDispersion;
+    //[SerializeField] protected bool m_HasRecoil;
+
     protected float m_LastTimeShoot;
 
     public static Action OnAmmoEmpty;
@@ -25,13 +27,12 @@ public abstract class Weapon : MonoBehaviour
     {
         m_CurrentAmmo = m_MaxAmmo;
     }
-
+    
     public virtual void TryShoot()
     {
         if (CanShoot())
         {
             Shoot();
-
             if (m_CurrentAmmo <= 0)
             {
                 OnAmmoEmpty?.Invoke();
