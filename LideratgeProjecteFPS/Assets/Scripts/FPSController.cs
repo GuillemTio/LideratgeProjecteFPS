@@ -146,7 +146,6 @@ public class FPSController : MonoBehaviour
             m_RigidBody.velocity = new Vector3(l_LimitedVel.x, m_RigidBody.velocity.y, l_LimitedVel.z);
         }
 
-        Debug.Log(m_RigidBody.velocity.magnitude);
     }
 
 
