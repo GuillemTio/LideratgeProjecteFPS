@@ -3,13 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WeaponHolder : MonoBehaviour
 {
+    public Camera RaycastCam => m_RaycastCam;
+    [FormerlySerializedAs("m_RayCastCam")] [SerializeField] private Camera m_RaycastCam;
+    
     [Header("Input")]
     [SerializeField] private KeyCode m_ShootKeyCode = KeyCode.Mouse0;
     [SerializeField] private KeyCode m_AimKeyCode = KeyCode.Mouse1;
     [SerializeField] private KeyCode m_ChangeWeaponKeyCode = KeyCode.Q;
+
     [SerializeField] private string m_NextWeaponName;
     List<Weapon> m_WeaponList;
 

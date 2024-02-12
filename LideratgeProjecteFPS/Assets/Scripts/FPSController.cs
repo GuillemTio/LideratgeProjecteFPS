@@ -32,7 +32,6 @@ public class FPSController : MonoBehaviour
     public Camera m_Camera;
 
     [Header("Input")]
-
     public KeyCode m_LeftKeyCode = KeyCode.A;
     public KeyCode m_RightKeyCode = KeyCode.D;
     public KeyCode m_UpKeyCode = KeyCode.W;
@@ -135,6 +134,7 @@ public class FPSController : MonoBehaviour
 
         l_Movement.Normalize();
 
+        //Debug.Log(l_Movement);
 
         m_RigidBody.AddForce(l_Movement * m_MoveSpeed, ForceMode.Force);
 
@@ -145,33 +145,5 @@ public class FPSController : MonoBehaviour
             Vector3 l_LimitedVel = l_FlatVel.normalized * m_MoveSpeed;
             m_RigidBody.velocity = new Vector3(l_LimitedVel.x, m_RigidBody.velocity.y, l_LimitedVel.z);
         }
-
     }
-
-
-
-    public void RestartLevel()
-    {
-        //m_CharacterController.enabled = false;
-        transform.position = m_StartPosition;
-        transform.rotation = m_StartRotation;
-        m_Yaw = transform.rotation.eulerAngles.y;
-        m_Pitch = 0.0f;
-        //m_CharacterController.enabled = true;
-    }
-
-    void SetStartPosition(Transform startTransform)
-    {
-        m_StartPosition = startTransform.position;
-        m_StartRotation = startTransform.rotation;
-        //m_CharacterController.enabled = false;
-        transform.position = m_StartPosition;
-        transform.rotation = m_StartRotation;
-        m_Yaw = transform.rotation.eulerAngles.y;
-        m_Pitch = 0.0f;
-        //m_CharacterController.enabled = true;
-    }
-
-
-
 }
