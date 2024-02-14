@@ -5,7 +5,7 @@ public abstract class Weapon : MonoBehaviour
 {
     protected WeaponHolder m_Holder;
 
-    [Header("Weapon Settings")]
+    [Header("OldWeapon Settings")]
     [SerializeField] protected int m_MaxAmmo;
     [SerializeField] protected float m_FireRate;
     [SerializeField] protected float m_Damage;
@@ -17,6 +17,7 @@ public abstract class Weapon : MonoBehaviour
     protected float m_LastTimeShoot;
 
     public static Action OnAmmoEmpty;
+    public Action OnShoot;
 
     private void Awake()
     {
@@ -45,6 +46,7 @@ public abstract class Weapon : MonoBehaviour
     {
         Debug.Log("Shoot " + gameObject.name);
         m_CurrentAmmo--;
+        OnShoot?.Invoke();
         m_LastTimeShoot = Time.time;
     }
 

@@ -145,10 +145,5 @@ public class FPSController : MonoBehaviour
             Vector3 l_LimitedVel = l_FlatVel.normalized * m_MoveSpeed;
             m_RigidBody.velocity = new Vector3(l_LimitedVel.x, m_RigidBody.velocity.y, l_LimitedVel.z);
         }
-<<<<<<< Updated upstream
-=======
-
-        // Debug.Log(m_RigidBody.velocity.magnitude);
->>>>>>> Stashed changes
     }
 }
