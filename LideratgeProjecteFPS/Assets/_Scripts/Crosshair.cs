@@ -21,6 +21,7 @@ public class Crosshair : MonoBehaviour
 
     public void UpdateCrosshairUI(float dispersion)
     {
+        Debug.Log(dispersion);
         m_TopLine.anchoredPosition = new Vector2(m_TopLine.anchoredPosition.x, dispersion + m_TopLine.rect.height / 2); 
         m_BotLine.anchoredPosition = new Vector2(m_TopLine.anchoredPosition.x, -dispersion - m_TopLine.rect.height / 2); 
         m_LeftLine.anchoredPosition = new Vector2(-dispersion - m_LeftLine.rect.width / 2, m_LeftLine.anchoredPosition.y); 

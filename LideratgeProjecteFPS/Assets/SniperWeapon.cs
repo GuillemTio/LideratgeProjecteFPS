@@ -1,7 +1,15 @@
-﻿using Unity.VisualScripting;
+﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 public class SniperWeapon : Weapon
 {
+    public bool IsAiming { get; set; }
+
+    private void Update()
+    {
+        IsAiming = Input.GetKey(KeyCode.Mouse1);
+    }
+
     protected override void Shoot()
     {
         base.Shoot();
@@ -20,4 +28,5 @@ public class SniperWeapon : Weapon
             Debug.DrawLine(l_RaycastHit.point, l_RaycastHit.point + l_RaycastHit.normal, Color.red, 5f);
         }
     }
+
 }
