@@ -1493,6 +1493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RaycastCam: {fileID: 963194227}
+  m_Crosshair: {fileID: 0}
   m_ShootKeyCode: 323
   m_AimKeyCode: 324
   m_ChangeWeaponKeyCode: 113
