@@ -2,13 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class WeaponHolder : MonoBehaviour
 {
     public Camera RaycastCam => m_RaycastCam;
-    [FormerlySerializedAs("m_RayCastCam")] [SerializeField] private Camera m_RaycastCam;
+    public Crosshair Crosshair => m_Crosshair;
+    
+    [SerializeField] private Camera m_RaycastCam;
+    [SerializeField] private Crosshair m_Crosshair;
     
     [Header("Input")]
     [SerializeField] private KeyCode m_ShootKeyCode = KeyCode.Mouse0;
@@ -20,7 +24,7 @@ public class WeaponHolder : MonoBehaviour
 
     WeaponPair m_Pair;
     Queue<Weapon> m_BackWeapons = new();
-    
+    public Action<Weapon> OnWeaponChanged;
     void Start()
     {
         m_WeaponList = GetComponentsInChildren<Weapon>().ToList<Weapon>();
@@ -33,6 +37,8 @@ public class WeaponHolder : MonoBehaviour
             m_BackWeapons.Enqueue(l_Weapon);
         }
         m_NextWeaponName = m_BackWeapons.Peek().gameObject.name;
+
+        OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
     }
     private void OnEnable()
     {
@@ -54,6 +60,7 @@ public class WeaponHolder : MonoBehaviour
     private void OnAmmoEmpty()
     {
         LoadNextWeapon();
+        
     }
 
     private void LoadNextWeapon()
@@ -65,6 +72,7 @@ public class WeaponHolder : MonoBehaviour
 
         m_Pair.PrimaryWeapon.SetEnabled(true);
         m_NextWeaponName = m_BackWeapons.Peek().gameObject.name;
+        OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
     }
 
     // Update is called once per frame
@@ -84,6 +92,7 @@ public class WeaponHolder : MonoBehaviour
     private void ChangeWeapon()
     {
         m_Pair.SwapWeapons();
+        OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
     }
 
     private void TryShootWeapon()
