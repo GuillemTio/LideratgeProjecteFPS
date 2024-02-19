@@ -154,6 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1471224b8fe55184c8f676d260f2e38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHealth: 100
+  damage: 5
+  meleeAttackDistance: 2
+  attackRate: 2
 --- !u!114 &6661588434526891148
 MonoBehaviour:
   m_ObjectHideFlags: 0

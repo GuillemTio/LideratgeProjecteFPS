@@ -24,7 +24,7 @@ public class SniperWeapon : Weapon
         
         if (Physics.Raycast(l_Ray, out RaycastHit l_RaycastHit, m_Range))
         {
-            l_RaycastHit.transform.GetComponent<IShootable>()?.HandleShooted();
+            l_RaycastHit.transform.GetComponent<IShootable>()?.HandleShooted(m_Damage);
             Debug.DrawLine(l_RaycastHit.point, l_RaycastHit.point + l_RaycastHit.normal, Color.red, 5f);
         }
     }
