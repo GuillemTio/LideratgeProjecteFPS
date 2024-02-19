@@ -1686,7 +1686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
-  INVINCIBLE: 1
+  INVINCIBLE: 0
 --- !u!1 &1092525055
 GameObject:
   m_ObjectHideFlags: 0
