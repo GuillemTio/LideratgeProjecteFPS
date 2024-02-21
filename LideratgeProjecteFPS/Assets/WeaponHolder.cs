@@ -78,15 +78,26 @@ public class WeaponHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(m_ChangeWeaponKeyCode))
+        {
+            ChangeWeapon();
+            return;
+        }
         if (Input.GetKey(m_ShootKeyCode))
         {
             TryShootWeapon();
         }
 
-        if (Input.GetKeyDown(m_ChangeWeaponKeyCode))
+
+        if (Input.GetKey(m_AimKeyCode))
         {
-            ChangeWeapon();
+            TryAim();
         }
+    }
+
+    private void TryAim()
+    {
+        m_Pair.PrimaryWeapon.TryAim();
     }
 
     private void ChangeWeapon()

@@ -3,8 +3,10 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public bool IsAiming { get; protected set; }
+    public CommonWeaponDispersion Dispersion { get; protected set; }
     protected WeaponHolder m_Holder;
-
+    
     [Header("OldWeapon Settings")]
     [SerializeField] protected int m_MaxAmmo;
     [SerializeField] protected float m_FireRate;
@@ -23,6 +25,7 @@ public abstract class Weapon : MonoBehaviour
     {
         ResetAmmo();
         m_Holder = GetComponentInParent<WeaponHolder>();
+        Dispersion = GetComponent<CommonWeaponDispersion>();
     }
     private void ResetAmmo()
     {
@@ -58,6 +61,25 @@ public abstract class Weapon : MonoBehaviour
     public void SetEnabled(bool enabled)
     {
         gameObject.SetActive(enabled);
+    }
+
+    public void TryAim()
+    {
+        IsAiming = false;
+        if (CanAim())
+        {
+            Aim();
+        }
+    }
+
+    private void Aim()
+    {
+        IsAiming = true;
+    }
+
+    private bool CanAim()
+    {
+        return true;
     }
 }
 

@@ -54,22 +54,15 @@ public class DispersionHandler : MonoBehaviour
 
     private void HandleDispersionModifiers()
     {
-        var l_DispersionW = m_EquippedWeapon.GetComponent<CommonWeaponDispersion>();
+        var l_DispersionW = m_EquippedWeapon.Dispersion;
         m_TargetDispersion = l_DispersionW.m_MinDispersion;
         m_TargetDispersion = GetAddedDispersion();
 
         m_TargetDispersion = Mathf.Clamp(m_TargetDispersion, l_DispersionW.m_MinDispersion, l_DispersionW.m_MaxDispersion);
 
-        if (m_EquippedWeapon is SniperWeapon)
+        if (m_EquippedWeapon.IsAiming)
         {
-            Debug.Log("is sniper");
-            var l_Sniper = m_EquippedWeapon as SniperWeapon;
-            if (l_Sniper != null && l_Sniper.IsAiming)
-            {
-                Debug.Log("is aiming");
-                m_TargetDispersion = l_Sniper.GetComponent<SniperDispersion>().m_MinDispersion;
-                Debug.Log(m_TargetDispersion + " target in aim");
-            }
+            m_TargetDispersion = l_DispersionW.m_AimDispersion;
         }
 
         if (m_CurrentDispersion >= m_TargetDispersion)
@@ -77,8 +70,7 @@ public class DispersionHandler : MonoBehaviour
         else if (m_CurrentDispersion <= m_TargetDispersion)
             m_CurrentDispersion = Mathf.MoveTowards(m_CurrentDispersion, m_TargetDispersion, m_AddingSpeed*Time.deltaTime);
 
-        m_CurrentDispersion = Mathf.Clamp(m_CurrentDispersion, l_DispersionW.m_MinDispersion, l_DispersionW.m_MaxDispersion);
-        Debug.Log(m_TargetDispersion + " target allways");
+        m_CurrentDispersion = Mathf.Clamp(m_CurrentDispersion, 0.0f, l_DispersionW.m_MaxDispersion);
 
         m_Holder.Crosshair.UpdateCrosshairUI(m_CurrentDispersion);
     }
