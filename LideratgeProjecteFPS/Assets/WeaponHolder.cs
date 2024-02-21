@@ -39,6 +39,7 @@ public class WeaponHolder : MonoBehaviour
         m_NextWeaponName = m_BackWeapons.Peek().gameObject.name;
 
         OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
+        m_Pair.PrimaryWeapon.Draw();
     }
     private void OnEnable()
     {
@@ -88,7 +89,7 @@ public class WeaponHolder : MonoBehaviour
             TryShootWeapon();
         }
 
-
+        
         if (Input.GetKey(m_AimKeyCode))
         {
             TryAim();

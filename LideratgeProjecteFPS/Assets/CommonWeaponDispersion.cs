@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class CommonWeaponDispersion : MonoBehaviour
 {
+    public virtual float DispersionPerShot => m_DispPerShot;
     public float m_MinDispersion;
     public float m_MaxDispersion;
-    public float m_DispPerShot;
+    private float m_DispPerShot;
     public float m_AimDispersion;
 
-    private Weapon m_Weapon;
+    protected Weapon m_Weapon;
     protected FPSController m_FPSController;
     protected virtual void Awake()
     {

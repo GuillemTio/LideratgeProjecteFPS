@@ -43,7 +43,7 @@ public class DispersionHandler : MonoBehaviour
 
     private void OnShoot()
     {
-        var l_DispPerShot = m_EquippedWeapon.GetComponent<CommonWeaponDispersion>().m_DispPerShot;
+        var l_DispPerShot = m_EquippedWeapon.GetComponent<CommonWeaponDispersion>().DispersionPerShot;
         m_CurrentDispersion += l_DispPerShot;
     }
 
@@ -55,6 +55,10 @@ public class DispersionHandler : MonoBehaviour
     private void HandleDispersionModifiers()
     {
         var l_DispersionW = m_EquippedWeapon.Dispersion;
+        if (l_DispersionW == null)
+        {
+            return;
+        }
         m_TargetDispersion = l_DispersionW.m_MinDispersion;
         m_TargetDispersion = GetAddedDispersion();
 

@@ -17,11 +17,11 @@ public class WeaponPair
     public void SwapWeapons()
     {
         var l_Temp = PrimaryWeapon;
-
+        
         PrimaryWeapon = SecondaryWeapon;
         SecondaryWeapon = l_Temp;
 
-        SecondaryWeapon.SetEnabled(false);
-        PrimaryWeapon.SetEnabled(true);
+        SecondaryWeapon.Draw();
+        PrimaryWeapon.Undraw();
     }
 }

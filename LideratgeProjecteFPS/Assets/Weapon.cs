@@ -5,6 +5,11 @@ public abstract class Weapon : MonoBehaviour
 {
     public bool IsAiming { get; protected set; }
     public CommonWeaponDispersion Dispersion { get; protected set; }
+    public Action OnDraw;
+    public Action OnUndraw;
+
+    public Action OnAim;
+
     protected WeaponHolder m_Holder;
     
     [Header("OldWeapon Settings")]
@@ -65,21 +70,33 @@ public abstract class Weapon : MonoBehaviour
 
     public void TryAim()
     {
+        Aim();
+    }
+
+    private void LateUpdate()
+    {
         IsAiming = false;
-        if (CanAim())
-        {
-            Aim();
-        }
     }
 
     private void Aim()
     {
         IsAiming = true;
+        OnAim?.Invoke();
     }
 
     private bool CanAim()
     {
         return true;
+    }
+
+    public void Draw()
+    {
+        OnDraw?.Invoke();
+    }
+
+    public void Undraw()
+    {
+        OnUndraw?.Invoke();
     }
 }
 

@@ -2,6 +2,7 @@
 
 class SniperDispersion : CommonWeaponDispersion
 {
+    public override float DispersionPerShot => m_Weapon.IsAiming ? 0f : base.DispersionPerShot;
     [SerializeField] private float m_WalkDispersion;
     [SerializeField] private float m_CameraDispersion;
     public override float GetCurrentDispersion(Weapon weapon)
