@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 
 public class WeaponHolder : MonoBehaviour
 {
+    public FPSController FPSController { get; private set; }
     public Camera RaycastCam => m_RaycastCam;
     public Crosshair Crosshair => m_Crosshair;
     
@@ -25,6 +26,12 @@ public class WeaponHolder : MonoBehaviour
     WeaponPair m_Pair;
     Queue<Weapon> m_BackWeapons = new();
     public Action<Weapon> OnWeaponChanged;
+
+    private void Awake()
+    {
+        FPSController = GetComponentInParent<FPSController>();
+    }
+
     void Start()
     {
         m_WeaponList = GetComponentsInChildren<Weapon>().ToList<Weapon>();

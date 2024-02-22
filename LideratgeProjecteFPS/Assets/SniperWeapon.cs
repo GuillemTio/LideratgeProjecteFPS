@@ -15,12 +15,12 @@ public class SniperWeapon : Weapon
         base.Shoot();
         
         Vector3 l_CameraCenter = new(0.50f, 0.5f, 0.0f);
-        Vector3 l_DispersionOffset = m_Holder.Crosshair.GetRandomPointInsideCrosshair();
+        Vector3 l_DispersionOffset = Holder.Crosshair.GetRandomPointInsideCrosshair();
         
-        l_DispersionOffset.x /= m_Holder.RaycastCam.pixelWidth;
-        l_DispersionOffset.y /= m_Holder.RaycastCam.pixelHeight;
+        l_DispersionOffset.x /= Holder.RaycastCam.pixelWidth;
+        l_DispersionOffset.y /= Holder.RaycastCam.pixelHeight;
         
-        var l_Ray = m_Holder.RaycastCam.ViewportPointToRay(l_CameraCenter + l_DispersionOffset);
+        var l_Ray = Holder.RaycastCam.ViewportPointToRay(l_CameraCenter + l_DispersionOffset);
         
         if (Physics.Raycast(l_Ray, out RaycastHit l_RaycastHit, m_Range))
         {

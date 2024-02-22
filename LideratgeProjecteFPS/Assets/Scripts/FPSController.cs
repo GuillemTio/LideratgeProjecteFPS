@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 public class FPSController : MonoBehaviour
 {
@@ -145,8 +146,6 @@ public class FPSController : MonoBehaviour
             Vector3 l_LimitedVel = l_FlatVel.normalized * m_MoveSpeed;
             m_RigidBody.velocity = new Vector3(l_LimitedVel.x, m_RigidBody.velocity.y, l_LimitedVel.z);
         }
-
-        Debug.Log(m_RigidBody.velocity.magnitude);
     }
 
 
@@ -171,6 +170,40 @@ public class FPSController : MonoBehaviour
         m_Yaw = transform.rotation.eulerAngles.y;
         m_Pitch = 0.0f;
         //m_CharacterController.enabled = true;
+    }
+    
+    public void AddTorque(Vector2 torque, float duration)
+    {
+        StartCoroutine(AddTorqueOverTime(torque, duration));
+    }
+
+    private IEnumerator AddTorqueOverTime(Vector2 torque, float duration)
+    {
+        var l_TorqueAdded = torque;
+        var l_Timer = duration;
+        var l_Speed = torque / duration;
+        Debug.Log("PICH BEFORE: " + m_Pitch);
+        var l_AddedPitch = 0f;
+        var l_AddedYaw = 0f;
+        while (l_Timer > 0)
+        {
+            m_Pitch -= l_AddedPitch;
+            m_Yaw -= l_AddedYaw;
+            
+            m_Pitch += l_Speed.y * Time.deltaTime;
+            m_Yaw += l_Speed.x * Time.deltaTime;
+
+            // m_Pitch += l_Speed.y * Time.deltaTime;
+            // m_Yaw += l_Speed.x * Time.deltaTime;
+            l_Timer -= Time.deltaTime;
+            
+            // var l_TimeFraction = Mathf.Clamp01(l_Timer / duration);
+            // l_TorqueAdded = Vector2.Lerp(Vector2.zero, torque, l_TimeFraction);
+            // Debug.Log("Timer: " + l_Timer + " Torque: " + l_TorqueAdded.magnitude);
+            yield return null;
+        }
+        Debug.Log("PICH AFTER: " + m_Pitch);
+
     }
 
 

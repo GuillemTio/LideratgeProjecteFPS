@@ -4,13 +4,13 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public bool IsAiming { get; protected set; }
+    public WeaponHolder Holder { get; protected set; }
     public CommonWeaponDispersion Dispersion { get; protected set; }
     public Action OnDraw;
     public Action OnUndraw;
 
     public Action OnAim;
 
-    protected WeaponHolder m_Holder;
     
     [Header("OldWeapon Settings")]
     [SerializeField] protected int m_MaxAmmo;
@@ -29,7 +29,7 @@ public abstract class Weapon : MonoBehaviour
     private void Awake()
     {
         ResetAmmo();
-        m_Holder = GetComponentInParent<WeaponHolder>();
+        Holder = GetComponentInParent<WeaponHolder>();
         Dispersion = GetComponent<CommonWeaponDispersion>();
     }
     private void ResetAmmo()
