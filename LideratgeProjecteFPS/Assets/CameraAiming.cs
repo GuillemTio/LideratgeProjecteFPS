@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class CameraAiming : MonoBehaviour
 {
-    public static bool Aiming {private get; set;}
-    public static float TargetFOV { private get; set; }
-
+    public static CameraAiming Instance;
+    public bool Aiming;
+    public float TargetFOV;
     private Camera m_Camera;
 
     [Range(0f, .5f)]
@@ -19,6 +19,7 @@ public class CameraAiming : MonoBehaviour
     private void Awake()
     {
         m_Camera = GetComponent<Camera>();
+        Instance = this;
     }
 
     void Start()
@@ -27,13 +28,10 @@ public class CameraAiming : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    private void LateUpdate()
+    private void Update()
     {
+        Debug.Log("UPDATE CAMERA");
         if (Aiming)
         {
             m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, TargetFOV, m_LerpValue);
@@ -42,6 +40,5 @@ public class CameraAiming : MonoBehaviour
         {
             m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, m_StartFOV, m_LerpValue);
         }
-        Aiming = false;
     }
 }

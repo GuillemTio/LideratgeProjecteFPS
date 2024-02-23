@@ -4,6 +4,7 @@ public class FPSController : MonoBehaviour
 {
     float m_Yaw;
     float m_Pitch;
+    Vector2 m_CurrentTorque;
     public Transform m_PitchController;
 
     //public float m_HealthStart;
@@ -54,6 +55,8 @@ public class FPSController : MonoBehaviour
     {
 
         Cursor.lockState = CursorLockMode.Locked;
+        m_Pitch = m_PitchController.localRotation.eulerAngles.x;
+        m_Yaw = transform.rotation.eulerAngles.y;
     }
 
     void Update()
@@ -101,12 +104,12 @@ public class FPSController : MonoBehaviour
         float l_YawInverted = m_YawInverted ? -1f : 1f;
         float l_PitchInverted = m_PitchInverted ? -1f : 1f;
 
-        m_Yaw = m_Yaw + m_YawSpeed * l_HorizontalMovement * Time.deltaTime * l_YawInverted;
-        m_Pitch = m_Pitch + m_PitchSpeed * l_VerticalMovement * Time.deltaTime * l_PitchInverted;
+        m_Yaw = m_Yaw + m_YawSpeed * l_HorizontalMovement * Time.fixedDeltaTime * l_YawInverted;
+        m_Pitch = m_Pitch + m_PitchSpeed * l_VerticalMovement * Time.fixedDeltaTime * l_PitchInverted;
         m_Pitch = Mathf.Clamp(m_Pitch, m_MinPitch, m_MaxPitch);
 
-        transform.rotation = Quaternion.Euler(0.0f, m_Yaw, 0.0f);
-        m_PitchController.localRotation = Quaternion.Euler(m_Pitch, 0.0f, 0.0f);
+        transform.rotation = Quaternion.Euler(0.0f, m_Yaw + m_CurrentTorque.x, 0.0f);
+        m_PitchController.localRotation = Quaternion.Euler(m_Pitch + m_CurrentTorque.y, 0.0f, 0.0f);
 
         float l_YawInRadians = m_Yaw * Mathf.Deg2Rad;
         float l_Yaw90InRadians = (m_Yaw + 90) * Mathf.Deg2Rad;
@@ -179,30 +182,19 @@ public class FPSController : MonoBehaviour
 
     private IEnumerator AddTorqueOverTime(Vector2 torque, float duration)
     {
-        var l_TorqueAdded = torque;
+        var l_InverseTorqueAdded = torque;
         var l_Timer = duration;
         var l_Speed = torque / duration;
-        Debug.Log("PICH BEFORE: " + m_Pitch);
-        var l_AddedPitch = 0f;
-        var l_AddedYaw = 0f;
-        while (l_Timer > 0)
+        while (m_CurrentTorque.magnitude < torque.magnitude - torque.magnitude * 0.1)
         {
-            m_Pitch -= l_AddedPitch;
-            m_Yaw -= l_AddedYaw;
-            
-            m_Pitch += l_Speed.y * Time.deltaTime;
-            m_Yaw += l_Speed.x * Time.deltaTime;
 
-            // m_Pitch += l_Speed.y * Time.deltaTime;
-            // m_Yaw += l_Speed.x * Time.deltaTime;
-            l_Timer -= Time.deltaTime;
-            
-            // var l_TimeFraction = Mathf.Clamp01(l_Timer / duration);
-            // l_TorqueAdded = Vector2.Lerp(Vector2.zero, torque, l_TimeFraction);
-            // Debug.Log("Timer: " + l_Timer + " Torque: " + l_TorqueAdded.magnitude);
+            l_InverseTorqueAdded = Vector2.Lerp(l_InverseTorqueAdded, Vector2.zero, duration);
+            m_CurrentTorque = torque - l_InverseTorqueAdded;
             yield return null;
         }
-        Debug.Log("PICH AFTER: " + m_Pitch);
+        m_Pitch += m_CurrentTorque.y;
+        m_Yaw += m_CurrentTorque.x;
+        m_CurrentTorque = Vector2.zero;
 
     }
 

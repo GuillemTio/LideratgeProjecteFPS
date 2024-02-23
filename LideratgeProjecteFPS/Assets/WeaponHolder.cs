@@ -35,7 +35,6 @@ public class WeaponHolder : MonoBehaviour
     void Start()
     {
         m_WeaponList = GetComponentsInChildren<Weapon>().ToList<Weapon>();
-        SetEnabledAllWeapons(false);
         m_Pair = new(m_WeaponList);
 
         for (int i = 2; i < m_WeaponList.Count; i++)
@@ -46,8 +45,15 @@ public class WeaponHolder : MonoBehaviour
         m_NextWeaponName = m_BackWeapons.Peek().gameObject.name;
 
         OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
-        m_Pair.PrimaryWeapon.Draw();
+        UpdatePairState();
     }
+
+    private void UpdatePairState()
+    {
+        m_Pair.PrimaryWeapon.Draw();
+        m_Pair.SecondaryWeapon.Seath();
+    }
+
     private void OnEnable()
     {
         Weapon.OnAmmoEmpty += OnAmmoEmpty;
@@ -55,14 +61,6 @@ public class WeaponHolder : MonoBehaviour
     private void OnDisable()
     {
         Weapon.OnAmmoEmpty -= OnAmmoEmpty;
-    }
-
-    private void SetEnabledAllWeapons(bool enabled)
-    {
-        foreach (var weapon in m_WeaponList)
-        {
-            weapon.SetEnabled(enabled);
-        }
     }
 
     private void OnAmmoEmpty()
@@ -73,19 +71,21 @@ public class WeaponHolder : MonoBehaviour
 
     private void LoadNextWeapon()
     {
-        SetEnabledAllWeapons(false);
-
         m_BackWeapons.Enqueue(m_Pair.PrimaryWeapon);
         m_Pair.PrimaryWeapon = m_BackWeapons.Dequeue();
 
-        m_Pair.PrimaryWeapon.SetEnabled(true);
         m_NextWeaponName = m_BackWeapons.Peek().gameObject.name;
         OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
+        UpdatePairState();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(m_AimKeyCode))
+        {
+            TryAim();
+        }
         if (Input.GetKeyDown(m_ChangeWeaponKeyCode))
         {
             ChangeWeapon();
@@ -97,10 +97,6 @@ public class WeaponHolder : MonoBehaviour
         }
 
         
-        if (Input.GetKey(m_AimKeyCode))
-        {
-            TryAim();
-        }
     }
 
     private void TryAim()
@@ -112,6 +108,7 @@ public class WeaponHolder : MonoBehaviour
     {
         m_Pair.SwapWeapons();
         OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
+        UpdatePairState();
     }
 
     private void TryShootWeapon()

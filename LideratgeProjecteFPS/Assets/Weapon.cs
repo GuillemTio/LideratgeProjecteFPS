@@ -3,24 +3,24 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField] private GameObject m_MeshGameObject;
     public bool IsAiming { get; protected set; }
+    public bool IsPrimary { get; protected set; }
     public WeaponHolder Holder { get; protected set; }
     public CommonWeaponDispersion Dispersion { get; protected set; }
     public Action OnDraw;
-    public Action OnUndraw;
+    public Action OnSeath;
 
     public Action OnAim;
 
-    
-    [Header("OldWeapon Settings")]
+    [Header("Weapon Settings")]
     [SerializeField] protected int m_MaxAmmo;
     [SerializeField] protected float m_FireRate;
     [SerializeField] protected float m_Damage;
     [SerializeField] protected float m_Range;
     [SerializeField] protected int m_CurrentAmmo;
-    //[SerializeField] protected bool m_HasDispersion;
-    //[SerializeField] protected bool m_HasRecoil;
-
+    [SerializeField] protected LayerMask m_ShootableLayer;
+    
     protected float m_LastTimeShoot;
 
     public static Action OnAmmoEmpty;
@@ -31,6 +31,7 @@ public abstract class Weapon : MonoBehaviour
         ResetAmmo();
         Holder = GetComponentInParent<WeaponHolder>();
         Dispersion = GetComponent<CommonWeaponDispersion>();
+        SetShowMesh(false);
     }
     private void ResetAmmo()
     {
@@ -52,7 +53,6 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Shoot()
     {
-        Debug.Log("Shoot " + gameObject.name);
         m_CurrentAmmo--;
         OnShoot?.Invoke();
         m_LastTimeShoot = Time.time;
@@ -63,23 +63,29 @@ public abstract class Weapon : MonoBehaviour
         return Time.time - m_LastTimeShoot >= m_FireRate;
     }
 
-    public void SetEnabled(bool enabled)
+    public void SetShowMesh(bool enabled)
     {
-        gameObject.SetActive(enabled);
+        m_MeshGameObject.SetActive(enabled);
     }
 
     public void TryAim()
     {
-        Aim();
+        if (CanAim())
+        {
+            Aim();
+        }
     }
 
     private void LateUpdate()
     {
+        if (!IsPrimary) return;
         IsAiming = false;
+        Debug.Log("AIMING IS FALSE:" + gameObject.name);
     }
 
     private void Aim()
     {
+        Debug.Log("AIMED IS TRUE");
         IsAiming = true;
         OnAim?.Invoke();
     }
@@ -91,12 +97,16 @@ public abstract class Weapon : MonoBehaviour
 
     public void Draw()
     {
+        IsPrimary = true;
+        SetShowMesh(true);
         OnDraw?.Invoke();
     }
 
-    public void Undraw()
+    public void Seath()
     {
-        OnUndraw?.Invoke();
+        IsPrimary = false;
+        SetShowMesh(false);
+        OnSeath?.Invoke();
     }
 }
 

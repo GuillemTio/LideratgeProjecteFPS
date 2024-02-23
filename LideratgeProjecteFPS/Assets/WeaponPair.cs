@@ -6,9 +6,6 @@ public class WeaponPair
     {
         PrimaryWeapon = list[0];
         SecondaryWeapon = list[1];
-
-        SecondaryWeapon.SetEnabled(false);
-        PrimaryWeapon.SetEnabled(true);
     }
 
     public Weapon PrimaryWeapon;
@@ -16,12 +13,6 @@ public class WeaponPair
 
     public void SwapWeapons()
     {
-        var l_Temp = PrimaryWeapon;
-        
-        PrimaryWeapon = SecondaryWeapon;
-        SecondaryWeapon = l_Temp;
-
-        SecondaryWeapon.Draw();
-        PrimaryWeapon.Undraw();
+        (PrimaryWeapon, SecondaryWeapon) = (SecondaryWeapon, PrimaryWeapon);
     }
 }

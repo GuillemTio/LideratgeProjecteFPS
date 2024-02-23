@@ -3,13 +3,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class SniperWeapon : Weapon
 {
-    public bool IsAiming { get; set; }
-
-    private void Update()
-    {
-        IsAiming = Input.GetKey(KeyCode.Mouse1);
-    }
-
     protected override void Shoot()
     {
         base.Shoot();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Weapon))]
@@ -14,38 +15,43 @@ public class WeaponAnimation : MonoBehaviour
 
     private void Awake()
     {
-        m_Animator = GetComponentInChildren<Animator>();
         m_Weapon = GetComponent<Weapon>();
+        m_Animator = GetComponentInChildren<Animator>();
     }
 
     private void OnEnable()
     {
+        Debug.Log("ENABLE ANIMATION");
         m_Weapon.OnShoot += OnShoot;
-        m_Weapon.OnDraw += Draw;
-        m_Weapon.OnUndraw += Undraw;
+        m_Weapon.OnDraw += OnDraw;
+        m_Weapon.OnSeath += OnSeath;
     }
 
     private void OnDisable()
     {
         m_Weapon.OnShoot -= OnShoot;
-        m_Weapon.OnDraw -= Draw;
-        m_Weapon.OnUndraw -= Undraw;
+        m_Weapon.OnDraw -= OnDraw;
+        m_Weapon.OnSeath -= OnSeath;
     }
-    private void Undraw()
+    private void OnSeath()
     {
-        
     }
 
-    private void Draw()
+    private void OnDraw()
     {
         Debug.Log("SET TARGET FOV");
-        CameraAiming.TargetFOV = m_AimFOV;
+        CameraAiming.Instance.TargetFOV = m_AimFOV;
     }
 
     private void Update()
     {
+        if (!m_Weapon.IsPrimary)
+        {
+            return;
+        }
+        Debug.Log("UPDATING ANIMATION: " + m_Weapon.gameObject.name);
+        CameraAiming.Instance.Aiming = m_Weapon.IsAiming;
         m_Animator.SetBool(Aiming, m_Weapon.IsAiming);
-        CameraAiming.Aiming = m_Weapon.IsAiming;
     }
 
     private void OnShoot()

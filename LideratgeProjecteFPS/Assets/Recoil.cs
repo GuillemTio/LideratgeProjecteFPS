@@ -9,7 +9,7 @@ public class Recoil : MonoBehaviour
     [SerializeField] private float m_MinRecoil;
     [SerializeField] private float m_MaxRecoil;
     [SerializeField] private float m_RecoilConeAnlge;
-    [SerializeField] private float m_Duration;
+    [SerializeField] private float m_LerpValue;
 
     private Weapon m_Weapon;
     // Start is called before the first frame update
@@ -37,6 +37,6 @@ public class Recoil : MonoBehaviour
         Vector2 l_RecoilDir = Quaternion.AngleAxis(l_RandomRotationAngle, Vector3.forward) * Vector2.down;
         Vector2 l_Torque = l_RecoilDir.normalized * l_RecoilAmmount;
 
-        m_Weapon.Holder.FPSController.AddTorque(l_Torque, m_Duration);
+        m_Weapon.Holder.FPSController.AddTorque(l_Torque, m_LerpValue);
     }
 }
