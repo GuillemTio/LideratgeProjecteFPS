@@ -95,14 +95,14 @@ public abstract class Weapon : MonoBehaviour
         return true;
     }
 
-    public void Draw()
+    public virtual void Draw()
     {
         IsPrimary = true;
         SetShowMesh(true);
         OnDraw?.Invoke();
     }
 
-    public void Seath()
+    public virtual void Seath()
     {
         IsPrimary = false;
         SetShowMesh(false);

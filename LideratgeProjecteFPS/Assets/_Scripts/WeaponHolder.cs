@@ -71,6 +71,7 @@ public class WeaponHolder : MonoBehaviour
 
     private void LoadNextWeapon()
     {
+        m_Pair.PrimaryWeapon.Seath();
         m_BackWeapons.Enqueue(m_Pair.PrimaryWeapon);
         m_Pair.PrimaryWeapon = m_BackWeapons.Dequeue();
 
