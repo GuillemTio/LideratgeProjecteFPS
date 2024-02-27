@@ -8,18 +8,18 @@ using UnityEngine;
 public class WeaponAnimation : MonoBehaviour
 {
     [SerializeField] private float m_AimFOV;
-    private Weapon m_Weapon;
-    private Animator m_Animator;
+    protected Weapon m_Weapon;
+    protected Animator m_Animator;
     private static readonly int Shoot = Animator.StringToHash("Shoot");
     private static readonly int Aiming = Animator.StringToHash("Aiming");
 
-    private void Awake()
+    protected virtual void Awake()
     {
         m_Weapon = GetComponent<Weapon>();
         m_Animator = GetComponentInChildren<Animator>();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         Debug.Log("ENABLE ANIMATION");
         m_Weapon.OnShoot += OnShoot;
@@ -27,24 +27,24 @@ public class WeaponAnimation : MonoBehaviour
         m_Weapon.OnSeath += OnSeath;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         m_Weapon.OnShoot -= OnShoot;
         m_Weapon.OnDraw -= OnDraw;
         m_Weapon.OnSeath -= OnSeath;
     }
-    private void OnSeath()
+    protected virtual void OnSeath()
     {
-        m_Animator.SetBool(Aiming, false);      
+        m_Animator.SetBool(Aiming, false);
     }
 
-    private void OnDraw()
+    protected virtual void OnDraw()
     {
         Debug.Log("SET TARGET FOV");
         CameraAiming.Instance.TargetFOV = m_AimFOV;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!m_Weapon.IsPrimary)
         {
@@ -55,7 +55,7 @@ public class WeaponAnimation : MonoBehaviour
         m_Animator.SetBool(Aiming, m_Weapon.IsAiming);
     }
 
-    private void OnShoot()
+    protected virtual void OnShoot()
     {
         m_Animator.SetTrigger(Shoot);
     }
