@@ -35,6 +35,7 @@ public class WeaponAnimation : MonoBehaviour
     }
     private void OnSeath()
     {
+        m_Animator.SetBool(Aiming, false);      
     }
 
     private void OnDraw()
