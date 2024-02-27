@@ -68,10 +68,5 @@ public class EnemyBehaviour : MonoBehaviour
         return l_EnemyToPlayer.magnitude;
     }
 
-    public enum TypesOfEnemyBehaviours
-    {
-        CHASINGPLAYER,
-        WANDERING,
-        STANDINGSTILL
-    }
+
 }
