@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sniper_ExitAim
+  m_Name: Weapon_ExitAim
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -35,7 +35,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sniper_EnterAim
+  m_Name: Weapon_EnterAim
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -63,7 +63,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EmptyState
+  m_Name: Weapon_NoAim
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -115,7 +115,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sniper_Idle
+  m_Name: Weapon_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -167,7 +167,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sniper_Shoot
+  m_Name: Weapon_Shoot
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -262,7 +262,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sniper3DModel
+  m_Name: WeaponController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Shoot
@@ -354,9 +354,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -5441261490600078294}
     m_Position: {x: 250, y: 100, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1662001185913539694}
-    m_Position: {x: 285, y: 165, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -367,32 +364,6 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -5441261490600078294}
---- !u!1102 &1662001185913539694
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sniper_NoAim
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0774645b5b8d18247b94b856fe1131b2, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &3439066072870154423
 AnimatorState:
   serializedVersion: 6
@@ -400,7 +371,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sniper_InAim
+  m_Name: Weapon_InAim
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -484,7 +455,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -8279519423650684632}
-    m_Position: {x: 310, y: 130, z: 0}
+    m_Position: {x: 300, y: 130, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 5823541251326005766}

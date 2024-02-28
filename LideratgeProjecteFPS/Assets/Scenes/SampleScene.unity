@@ -760,10 +760,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 171584652076111900, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1407776900641988276, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_Name
       value: Player
@@ -807,34 +803,6 @@ PrefabInstance:
     - target: {fileID: 3048434290279578138, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4025684648473592725, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_Damage
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713720952140350115, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7824662664961947916, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8514390898437435477, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_Damage
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8514390898437435477, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_MaxAmmo
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8514390898437435477, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_FireRate
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
