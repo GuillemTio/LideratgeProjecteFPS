@@ -31,7 +31,7 @@ public class CameraAiming : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("UPDATE CAMERA");
+        // Debug.Log("UPDATE CAMERA");
         if (Aiming)
         {
             m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, TargetFOV, m_LerpValue);

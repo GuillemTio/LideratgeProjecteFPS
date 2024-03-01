@@ -21,11 +21,22 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void Heal(float healing)
+    {
+        currentHealth += healing;
+        CheckHealth();
+        Debug.Log("Player current health = " + currentHealth);
+    }
+
     private void CheckHealth()
     {
         if (currentHealth <= 0)
         {
             Die();
+        }
+        else if (currentHealth > startHealth)
+        {
+            currentHealth = startHealth;
         }
     }
 

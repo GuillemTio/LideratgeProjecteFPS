@@ -47,6 +47,6 @@ MonoBehaviour:
   timeToSpawn: 3
   raycastLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   enemyPrefab: {fileID: 9130702898143865572, guid: 211c9a97c2e8abb43838deae41c1aded, type: 3}
   enemyBehaviour: 0
