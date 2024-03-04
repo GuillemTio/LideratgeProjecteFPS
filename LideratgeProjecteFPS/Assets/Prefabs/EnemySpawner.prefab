@@ -45,8 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToSpawn: 3
+  enemiesPerRound: 5
+  timeBetweenRounds: 10
+  enemiesToAddEachRound: 3
   raycastLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  enemyPrefab: {fileID: 9130702898143865572, guid: 211c9a97c2e8abb43838deae41c1aded, type: 3}
+  enemyPrefabs:
+  - {fileID: 9130702898143865572, guid: 211c9a97c2e8abb43838deae41c1aded, type: 3}
   enemyBehaviour: 0
