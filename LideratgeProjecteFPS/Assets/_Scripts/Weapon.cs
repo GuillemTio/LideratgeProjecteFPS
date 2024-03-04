@@ -10,7 +10,6 @@ public abstract class Weapon : MonoBehaviour
     public CommonWeaponDispersion Dispersion { get; protected set; }
     public Action OnDraw;
     public Action OnSeath;
-
     public Action OnAim;
 
     [Header("Weapon Settings")]

@@ -16,6 +16,7 @@ public class RocketLauncherWeapon : Weapon
     [SerializeField] private bool m_Reloaded;
     private bool m_Reloading;
     private bool m_CancelledReload;
+    public Action OnReload;
     protected override void Shoot()
     {
         base.Shoot();
@@ -55,6 +56,7 @@ public class RocketLauncherWeapon : Weapon
         //Play Animation
         m_CancelledReload = false;
         m_Reloading = true;
+        OnReload?.Invoke();
         yield return new WaitForSeconds(m_ReloadTime);
         if (!m_CancelledReload)
         {
