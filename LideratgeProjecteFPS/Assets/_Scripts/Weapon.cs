@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -18,12 +19,14 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float m_Damage;
     [SerializeField] protected float m_Range;
     [SerializeField] protected int m_CurrentAmmo;
+    [SerializeField] protected float m_ShootDelay;
     [SerializeField] protected LayerMask m_ShootableLayer;
     
     protected float m_LastTimeShoot;
 
     public static Action OnAmmoEmpty;
     public Action OnShoot;
+    public bool InTransition;
 
     private void Awake()
     {
@@ -41,25 +44,30 @@ public abstract class Weapon : MonoBehaviour
     {
         if (CanShoot())
         {
-            Shoot();
-            if (m_CurrentAmmo <= 0)
-            {
-                OnAmmoEmpty?.Invoke();
-                ResetAmmo();
-            }
+            BeforeShoot();
+            Invoke(nameof(Shoot), m_ShootDelay);
         }
     }
 
-    protected virtual void Shoot()
+    protected virtual void BeforeShoot()
     {
-        m_CurrentAmmo--;
         OnShoot?.Invoke();
         m_LastTimeShoot = Time.time;
+        Debug.Log("here2");
+        m_CurrentAmmo--;
+    }
+    protected virtual void Shoot()
+    {
+        if (m_CurrentAmmo <= 0)
+        {
+            OnAmmoEmpty?.Invoke();
+            ResetAmmo();
+        }
     }
 
-    protected virtual bool CanShoot()
+    public virtual bool CanShoot()
     {
-        return Time.time - m_LastTimeShoot >= m_FireRate;
+        return Time.time - m_LastTimeShoot >= m_FireRate && !InTransition;
     }
 
     public void SetShowMesh(bool enabled)
@@ -79,33 +87,41 @@ public abstract class Weapon : MonoBehaviour
     {
         if (!IsPrimary) return;
         IsAiming = false;
-        Debug.Log("AIMING IS FALSE:" + gameObject.name);
+        // Debug.Log("AIMING IS FALSE:" + gameObject.name);
     }
 
     private void Aim()
     {
-        Debug.Log("AIMED IS TRUE");
+        // Debug.Log("AIMED IS TRUE");
         IsAiming = true;
         OnAim?.Invoke();
     }
 
-    private bool CanAim()
+    protected virtual bool CanAim()
     {
-        return true;
+        return !InTransition;
     }
 
     public virtual void Draw()
     {
         IsPrimary = true;
-        SetShowMesh(true);
+        InTransition = true;
         OnDraw?.Invoke();
+        // SetShowMesh(true);
+    }
+
+    private IEnumerator HideWhenSeathed()
+    {
+        yield return new WaitWhile(()=>InTransition);
+        SetShowMesh(false);
     }
 
     public virtual void Seath()
     {
         IsPrimary = false;
-        SetShowMesh(false);
+        InTransition = true;
         OnSeath?.Invoke();
+        // StartCoroutine(HideWhenSeathed());
     }
 }
 

@@ -12,6 +12,8 @@ public class WeaponAnimation : MonoBehaviour
     protected Animator m_Animator;
     private static readonly int Shoot = Animator.StringToHash("Shoot");
     private static readonly int Aiming = Animator.StringToHash("Aiming");
+    private static readonly int Seath = Animator.StringToHash("Seath");
+    private static readonly int Draw = Animator.StringToHash("Draw");
 
     protected virtual void Awake()
     {
@@ -36,11 +38,14 @@ public class WeaponAnimation : MonoBehaviour
     protected virtual void OnSeath()
     {
         m_Animator.SetBool(Aiming, false);
+        CameraAiming.Instance.Aiming = false;
+        m_Animator.SetTrigger(Seath);
     }
 
     protected virtual void OnDraw()
     {
-        Debug.Log("SET TARGET FOV");
+        // Debug.Log("SET TARGET FOV");
+        m_Animator.SetTrigger(Draw);
         CameraAiming.Instance.TargetFOV = m_AimFOV;
     }
 
@@ -50,7 +55,7 @@ public class WeaponAnimation : MonoBehaviour
         {
             return;
         }
-        Debug.Log("UPDATING ANIMATION: " + m_Weapon.gameObject.name);
+        // Debug.Log("UPDATING ANIMATION: " + m_Weapon.gameObject.name);
         CameraAiming.Instance.Aiming = m_Weapon.IsAiming;
         m_Animator.SetBool(Aiming, m_Weapon.IsAiming);
     }

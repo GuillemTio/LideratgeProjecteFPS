@@ -27,6 +27,8 @@ public class WeaponHolder : MonoBehaviour
     Queue<Weapon> m_BackWeapons = new();
     public Action<Weapon> OnWeaponChanged;
 
+
+    private bool m_HasChangedLastFrame;
     private void Awake()
     {
         FPSController = GetComponentInParent<FPSController>();
@@ -45,13 +47,27 @@ public class WeaponHolder : MonoBehaviour
         m_NextWeaponName = m_BackWeapons.Peek().gameObject.name;
 
         OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
-        UpdatePairState();
+        UpdatePairState(null);
+        m_HasChangedLastFrame = true;
     }
 
-    private void UpdatePairState()
+    private void UpdatePairState(Weapon seathedWeapon)
     {
+        StopAllCoroutines();
+        if (seathedWeapon == null)
+        {
+            m_Pair.PrimaryWeapon.Draw();
+        }
+        else
+        {
+            StartCoroutine(DrawWhenOtherSeathed(seathedWeapon));
+        }
+    }
+
+    private IEnumerator DrawWhenOtherSeathed(Weapon seathedWeapon)
+    {
+        yield return new WaitWhile(() => seathedWeapon.InTransition);
         m_Pair.PrimaryWeapon.Draw();
-        m_Pair.SecondaryWeapon.Seath();
     }
 
     private void OnEnable()
@@ -71,13 +87,14 @@ public class WeaponHolder : MonoBehaviour
 
     private void LoadNextWeapon()
     {
+        m_HasChangedLastFrame = true;
+        var l_SeathedWeapon = m_Pair.PrimaryWeapon;
         m_Pair.PrimaryWeapon.Seath();
         m_BackWeapons.Enqueue(m_Pair.PrimaryWeapon);
         m_Pair.PrimaryWeapon = m_BackWeapons.Dequeue();
-
         m_NextWeaponName = m_BackWeapons.Peek().gameObject.name;
         OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
-        UpdatePairState();
+        UpdatePairState(l_SeathedWeapon);
     }
 
     // Update is called once per frame
@@ -92,12 +109,12 @@ public class WeaponHolder : MonoBehaviour
             ChangeWeapon();
             return;
         }
-        if (Input.GetKey(m_ShootKeyCode))
+        if (Input.GetKey(m_ShootKeyCode) && !m_HasChangedLastFrame)
         {
             TryShootWeapon();
         }
 
-        
+        m_HasChangedLastFrame = false;
     }
 
     private void TryAim()
@@ -107,9 +124,11 @@ public class WeaponHolder : MonoBehaviour
 
     private void ChangeWeapon()
     {
+        m_HasChangedLastFrame = true;
         m_Pair.SwapWeapons();
         OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
-        UpdatePairState();
+        m_Pair.SecondaryWeapon.Seath();
+        UpdatePairState(m_Pair.SecondaryWeapon);
     }
 
     private void TryShootWeapon()

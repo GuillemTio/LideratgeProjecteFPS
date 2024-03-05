@@ -11,20 +11,9 @@ public class RocketLauncherAnimation : WeaponAnimation
           m_Weapon = GetComponent<RocketLauncherWeapon>();
      }
 
-     protected override void OnEnable()
+     protected override void Update()
      {
-          base.OnEnable();
-          m_Weapon.OnReload += OnReload;
-     }
-
-     private void OnReload()
-     {
-          m_Animator.SetBool(Reloading, true);
-     }
-
-     protected override void OnSeath()
-     {
-          base.OnSeath();
-          m_Animator.SetBool(Reloading, false);
+          base.Update();
+          m_Animator.SetBool(Reloading, m_Weapon.IsReloading);
      }
 }
