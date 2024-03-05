@@ -4,8 +4,8 @@ public class Rocket : MonoBehaviour
 {
     private Weapon m_Weapon;
     private Rigidbody m_Rb;
-    private float m_Damage;
-    private float m_DamagePlayer;
+    private int m_Damage;
+    private int m_DamagePlayer;
     private float m_BlastRadius;
     private LayerMask m_ShootableLayer;
 
@@ -16,7 +16,7 @@ public class Rocket : MonoBehaviour
         m_Rb.useGravity = false;
     }
 
-    public void Init(Weapon weapon, Vector3 forward, float speed, float damage, float damagePlayer, 
+    public void Init(Weapon weapon, Vector3 forward, float speed, int damage, int damagePlayer, 
         float blastRadius, LayerMask shootableLayer)
     {
         m_Weapon = weapon;
