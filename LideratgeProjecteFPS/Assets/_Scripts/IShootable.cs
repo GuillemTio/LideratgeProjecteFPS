@@ -1,4 +1,4 @@
 ﻿public interface IShootable
 {
-    public bool HandleShooted(float damage);
+    public bool HandleShooted(int damage);
 }

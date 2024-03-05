@@ -8,6 +8,9 @@ using UnityEngine.Serialization;
 
 public class WeaponHolder : MonoBehaviour
 {
+    public Weapon PrimaryWeapon => m_Pair.PrimaryWeapon;
+    public Weapon SecondaryWeapon => m_Pair.SecondaryWeapon;
+    public Weapon NextWeapon => m_BackWeapons.Peek();
     public FPSController FPSController { get; private set; }
     public Camera RaycastCam => m_RaycastCam;
     public Crosshair Crosshair => m_Crosshair;
@@ -27,7 +30,7 @@ public class WeaponHolder : MonoBehaviour
     Queue<Weapon> m_BackWeapons = new();
     public Action<Weapon> OnWeaponChanged;
 
-
+    
     private bool m_HasChangedLastFrame;
     private void Awake()
     {
