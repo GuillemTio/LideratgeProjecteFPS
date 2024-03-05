@@ -23,7 +23,6 @@ public class WeaponAnimation : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        Debug.Log("ENABLE ANIMATION");
         m_Weapon.OnShoot += OnShoot;
         m_Weapon.OnDraw += OnDraw;
         m_Weapon.OnSeath += OnSeath;

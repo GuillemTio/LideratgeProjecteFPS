@@ -10,7 +10,8 @@ public class BloodSwordWeapon : Weapon
     public Action OnBuffedAttack;
     
     [Header("Healing Settings")]
-    [SerializeField] private float m_HealingPerShot;
+    [SerializeField] private int m_HealingPerShot;
+    private PlayerHealth m_PlayerHealth;
 
     [Header("Buff Settings")] 
     [SerializeField] private GameObject m_ProjectilePrefab;
@@ -28,6 +29,12 @@ public class BloodSwordWeapon : Weapon
     public bool IsOnAttack;
     public int CurrentShootID;
     private float m_LastAttackTime;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        m_PlayerHealth = GetComponentInParent<PlayerHealth>();
+    }
 
     public override void TryShoot()
     {
@@ -94,7 +101,6 @@ public class BloodSwordWeapon : Weapon
 
     private void Attack()
     {
-        Debug.Log("HERE");
         BeforeShoot();
         Invoke(nameof(Shoot), m_ShootDelay);
         IsOnAttack = true;
@@ -104,15 +110,18 @@ public class BloodSwordWeapon : Weapon
     protected override void Shoot()
     {
         base.Shoot();
-        var l_Hits = Physics.SphereCastAll(transform.position + transform.forward * m_Range,
-            m_SphereCastRadius, transform.forward, m_SphereCastRadius, m_ShootableLayer);
+        var l_Transform = transform;
+        var l_Hits = Physics.SphereCastAll(l_Transform.position + l_Transform.forward * m_Range,
+            m_SphereCastRadius, l_Transform.forward, m_SphereCastRadius, m_ShootableLayer);
         if (l_Hits.Length == 0)
             return;
         foreach (var l_Hit in l_Hits)
         {
-            if (l_Hit.transform != Holder.FPSController.transform)
+            if (l_Hit.transform.TryGetComponent(out IShootable l_Shootable))
             {
-                l_Hit.transform.GetComponent<IShootable>()?.HandleShooted(m_Damage);
+                Debug.Log("HIT SOMETHING");
+                l_Shootable.HandleShooted(m_Damage);
+                m_PlayerHealth.Heal(m_HealingPerShot);
             }
         }
     }

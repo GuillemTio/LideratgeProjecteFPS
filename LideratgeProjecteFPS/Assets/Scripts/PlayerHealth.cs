@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] float startHealth;
-    private float currentHealth;
+    public float HealthFraction => Mathf.Clamp01((float)currentHealth/(float)startHealth);
+    public int CurrentHealth => currentHealth;
+    [SerializeField] int startHealth;
+    private int currentHealth;
     [SerializeField] bool INVINCIBLE;
 
     private void Start()
@@ -11,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (!INVINCIBLE)
         {
@@ -21,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void Heal(float healing)
+    public void Heal(int healing)
     {
         currentHealth += healing;
         CheckHealth();
@@ -33,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            currentHealth = 0;
         }
         else if (currentHealth > startHealth)
         {
@@ -43,6 +46,5 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player DEAD");
-
     }
 }

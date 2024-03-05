@@ -3,10 +3,10 @@ using UnityEngine;
 
 class SimpleEnemy : MonoBehaviour, IShootable
 {
-    [SerializeField] float startHealth;
-    private float currentHealth;
+    [SerializeField] int startHealth;
+    private int currentHealth;
 
-    [SerializeField] float damage;
+    [SerializeField] int damage;
     [SerializeField] float meleeAttackDistance;
     [SerializeField] float attackRate;
     private float attackTimer;
@@ -51,9 +51,9 @@ class SimpleEnemy : MonoBehaviour, IShootable
         return enemyToPlayerDistance < meleeAttackDistance;
     }
 
-    public bool HandleShooted(float damageTaken)
+    public bool HandleShooted(int damage)
     {
-        currentHealth -= damageTaken;
+        currentHealth -= damage;
         Debug.Log("Enemy current health: " + currentHealth);
         CheckHealth();
         return true;
@@ -70,6 +70,7 @@ class SimpleEnemy : MonoBehaviour, IShootable
         if (currentHealth <= 0)
         {
             Die();
+            currentHealth = 0;
         }
     }
 
@@ -77,5 +78,10 @@ class SimpleEnemy : MonoBehaviour, IShootable
     {
         gameObject.SetActive(false);
         // de momento lo desactivo, si nos interesa destruirlo o pasarlo por un game manager ya lo vemos.
+    }
+
+    public bool HandleShooted(float damage)
+    {
+        return true;
     }
 }

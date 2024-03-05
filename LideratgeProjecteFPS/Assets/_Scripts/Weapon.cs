@@ -8,6 +8,7 @@ public abstract class Weapon : MonoBehaviour
     public bool IsAiming { get; protected set; }
     public bool IsPrimary { get; protected set; }
     public WeaponHolder Holder { get; protected set; }
+    public int CurrentAmmo => m_CurrentAmmo;
     public CommonWeaponDispersion Dispersion { get; protected set; }
     public Action OnDraw;
     public Action OnSeath;
@@ -16,7 +17,7 @@ public abstract class Weapon : MonoBehaviour
     [Header("Weapon Settings")]
     [SerializeField] protected int m_MaxAmmo;
     [SerializeField] protected float m_FireRate;
-    [SerializeField] protected float m_Damage;
+    [SerializeField] protected int m_Damage;
     [SerializeField] protected float m_Range;
     [SerializeField] protected int m_CurrentAmmo;
     [SerializeField] protected float m_ShootDelay;
@@ -24,11 +25,11 @@ public abstract class Weapon : MonoBehaviour
     
     protected float m_LastTimeShoot;
 
-    public static Action OnAmmoEmpty;
+    public static Action OnAmmoEmpty; 
     public Action OnShoot;
     public bool InTransition;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         ResetAmmo();
         Holder = GetComponentInParent<WeaponHolder>();
@@ -53,7 +54,6 @@ public abstract class Weapon : MonoBehaviour
     {
         OnShoot?.Invoke();
         m_LastTimeShoot = Time.time;
-        Debug.Log("here2");
         m_CurrentAmmo--;
     }
     protected virtual void Shoot()

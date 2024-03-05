@@ -7,7 +7,7 @@ public class BloodBubble : MonoBehaviour
 {
     private Weapon m_Weapon;
     private Rigidbody m_Rb;
-    private float m_Damage;
+    private int m_Damage;
     private LayerMask m_ShootableLayerMask;
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class BloodBubble : MonoBehaviour
         m_Rb.useGravity = false;
     }
 
-    public void Init(Weapon weapon, Vector3 forward, float speed, float damage, LayerMask shootableLayer)
+    public void Init(Weapon weapon, Vector3 forward, float speed, int damage, LayerMask shootableLayer)
     {
         m_Weapon = weapon;
         m_Rb.isKinematic = false;

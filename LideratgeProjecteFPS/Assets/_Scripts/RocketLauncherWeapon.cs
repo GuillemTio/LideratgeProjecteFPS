@@ -5,7 +5,7 @@ using UnityEngine;
 public class RocketLauncherWeapon : Weapon
 {
     [Header("Rocket Launcher Settings")]
-    [SerializeField] private float m_SelfDamage;
+    [SerializeField] private int m_SelfDamage;
     [SerializeField] private float m_ReloadTime;
     [Range(0f, 1f)]
     [SerializeField] private float m_SpeedDeboostPct;
