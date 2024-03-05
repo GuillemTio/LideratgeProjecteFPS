@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5069868796381958295}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: PIVOT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8693563505754214761}
   - component: {fileID: 7879300808500747218}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: SniperRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 503
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
-  INVINCIBLE: 0
+  INVINCIBLE: 1
 --- !u!136 &5409656322308854878
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -699,7 +699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5154499509789784096}
   - component: {fileID: 3248274660496902033}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: RLRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 8396765091307886853}
   - component: {fileID: 844234915159694472}
   - component: {fileID: 9164836631324373513}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -930,6 +930,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4022457662578002518}
+  - {fileID: 7200275524655971547}
   - {fileID: 8396765091307886853}
   m_Father: {fileID: 3048434290279578138}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1196,7 +1197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4088070151961830807}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: PIVOT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1426,7 +1427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5652425998754662533}
   - component: {fileID: 5908232889753615633}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: BSwordRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1706,7 +1707,7 @@ GameObject:
   - component: {fileID: 3144380333684744675}
   - component: {fileID: 2846802154814669503}
   - component: {fileID: 4337422855651556999}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: SniperAimFilter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1782,7 +1783,7 @@ GameObject:
   - component: {fileID: 7349345557488233178}
   - component: {fileID: 1898753957025121047}
   - component: {fileID: 7044838844190557634}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1884,7 +1885,7 @@ GameObject:
   - component: {fileID: 5392089854430665044}
   - component: {fileID: 3079437230405511878}
   - component: {fileID: 2885779933011050032}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: BloodSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1922,7 +1923,7 @@ MonoBehaviour:
   m_MeshGameObject: {fileID: 1877815581457403807}
   m_MaxAmmo: 10
   m_FireRate: 0
-  m_Damage: 1000
+  m_Damage: 10
   m_Range: 1
   m_CurrentAmmo: 0
   m_ShootDelay: 0.6
@@ -2160,16 +2161,16 @@ MonoBehaviour:
   m_Gradient:
     serializedVersion: 2
     key0: {r: 0.9169811, g: 0.17820571, b: 0.17820571, a: 1}
-    key1: {r: 0.3547945, g: 1, b: 0, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
+    key1: {r: 1, g: 0.87943256, b: 0, a: 1}
+    key2: {r: 0.3547945, g: 1, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
+    ctime1: 31842
+    ctime2: 65535
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -2185,7 +2186,7 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 2
+    m_NumColorKeys: 3
     m_NumAlphaKeys: 2
 --- !u!1 &7197218559538678877
 GameObject:
@@ -2346,7 +2347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8507547581944353891}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: PIVOT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2380,7 +2381,7 @@ GameObject:
   - component: {fileID: 7357107102765962228}
   - component: {fileID: 7602933276366881408}
   - component: {fileID: 5721006615322993375}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: RocketBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2540,7 +2541,7 @@ GameObject:
   - component: {fileID: 7233432575282946168}
   - component: {fileID: 7739279724472096966}
   - component: {fileID: 6672834423695784198}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2584,7 +2585,7 @@ MonoBehaviour:
   m_ShootDelay: 0
   m_ShootableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   InTransition: 0
 --- !u!114 &7233432575282946168
 MonoBehaviour:
@@ -2600,7 +2601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MinDispersion: 80
   m_MaxDispersion: 100
-  m_AimDispersion: 0
+  m_AimDispersion: 2
   m_WalkDispersion: 50
   m_CameraDispersion: 30
 --- !u!114 &7739279724472096966
@@ -2641,7 +2642,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7342378078983904642}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: RocketCreationLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2676,7 +2677,7 @@ GameObject:
   - component: {fileID: 4892421448379918700}
   - component: {fileID: 1868148182340145159}
   - component: {fileID: 3116098201525315090}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: RocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2722,7 +2723,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 193
   InTransition: 0
-  m_SelfDamage: 0.5
+  m_SelfDamage: 0
   m_ReloadTime: 1
   m_SpeedDeboostPct: 0
   m_ReloadKeyCode: 114
@@ -2854,6 +2855,147 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 100
+--- !u!1 &8082549197787678159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7200275524655971547}
+  - component: {fileID: 4890500648642266980}
+  - component: {fileID: 6299152782252363782}
+  - component: {fileID: 8330129946824175869}
+  m_Layer: 6
+  m_Name: WeaponCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7200275524655971547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082549197787678159}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6047666273518620204}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &4890500648642266980
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082549197787678159}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 18.836226
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 1000
+  field of view: 65
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &6299152782252363782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082549197787678159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 1
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
+--- !u!114 &8330129946824175869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082549197787678159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a419505846fe946902c2fadae74eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1643319648990229198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2909,6 +3051,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c0715d6224915af49b63938b9961fc6f, type: 3}
       propertyPath: m_Name
       value: Bloodsword3DModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c0715d6224915af49b63938b9961fc6f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2977,6 +3123,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5de3bc6370c989a4dab6afba5a44dc2c, type: 2}
+    - target: {fileID: -6454208314099670898, guid: 46c8b9100ca37934496fe4e4fef5c2ed, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -4610051265256420125, guid: 46c8b9100ca37934496fe4e4fef5c2ed, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2984,6 +3134,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 46c8b9100ca37934496fe4e4fef5c2ed, type: 3}
       propertyPath: m_Name
       value: RocketLauncher3DModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46c8b9100ca37934496fe4e4fef5c2ed, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3058,10 +3212,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 741920518455a734d81eea1dac2e0579, type: 2}
+    - target: {fileID: -6317023927501637669, guid: ec14300a412dc4042beddb8a07e3bb6b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -871634853810907368, guid: ec14300a412dc4042beddb8a07e3bb6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 741920518455a734d81eea1dac2e0579, type: 2}
+    - target: {fileID: -575448418657815214, guid: ec14300a412dc4042beddb8a07e3bb6b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 55805708615235728, guid: ec14300a412dc4042beddb8a07e3bb6b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 374252782466845689, guid: ec14300a412dc4042beddb8a07e3bb6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3069,6 +3235,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ec14300a412dc4042beddb8a07e3bb6b, type: 3}
       propertyPath: m_Name
       value: Sniper3DModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ec14300a412dc4042beddb8a07e3bb6b, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7650639926624282922, guid: ec14300a412dc4042beddb8a07e3bb6b, type: 3}
       propertyPath: m_Materials.Array.data[0]

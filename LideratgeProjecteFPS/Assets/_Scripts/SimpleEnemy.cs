@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-class SimpleEnemy : MonoBehaviour, IShootable
+class SimpleEnemy : MonoBehaviour, IShootable, IHealthSystem
 {
     [SerializeField] int startHealth;
     private int currentHealth;
@@ -84,4 +84,7 @@ class SimpleEnemy : MonoBehaviour, IShootable
     {
         return true;
     }
+
+    public float HealthFraction => Mathf.Clamp01((float)currentHealth/(float)startHealth);
+    public int CurrentHealth => currentHealth;
 }

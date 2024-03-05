@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
     public float HealthFraction => Mathf.Clamp01((float)currentHealth/(float)startHealth);
     public int CurrentHealth => currentHealth;
