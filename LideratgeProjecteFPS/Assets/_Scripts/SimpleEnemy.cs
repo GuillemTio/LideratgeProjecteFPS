@@ -70,6 +70,8 @@ class SimpleEnemy : MonoBehaviour, IShootable, IHealthSystem
     private void Die()
     {
         gameObject.SetActive(false);
+
+        GameObject.FindGameObjectWithTag("PointsManager").GetComponent<PointsManager>().EnemyKilled();
         // de momento lo desactivo, si nos interesa destruirlo o pasarlo por un game manager ya lo vemos.
     }
 
