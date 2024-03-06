@@ -54,14 +54,7 @@ class SimpleEnemy : MonoBehaviour, IShootable, IHealthSystem
     public bool HandleShooted(int damage)
     {
         currentHealth -= damage;
-        Debug.Log("Enemy current health: " + currentHealth);
         CheckHealth();
-        return true;
-    }
-
-    public bool HandleShooted()
-    {
-        Debug.Log("Non Damage taken");
         return true;
     }
 

@@ -36,7 +36,7 @@ public abstract class Weapon : MonoBehaviour
         Dispersion = GetComponent<CommonWeaponDispersion>();
         SetShowMesh(false);
     }
-    private void ResetAmmo()
+    protected void ResetAmmo()
     {
         m_CurrentAmmo = m_MaxAmmo;
     }

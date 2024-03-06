@@ -27,7 +27,6 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     {
         currentHealth += healing;
         CheckHealth();
-        Debug.Log("Player current health = " + currentHealth);
     }
 
     private void CheckHealth()

@@ -8,6 +8,7 @@ public class BloodSwordWeapon : Weapon
 {
     public Action<bool> OnBuffedChanged;
     public Action OnBuffedAttack;
+    public ParticleSystem m_Particles;
     
     [Header("Healing Settings")]
     [SerializeField] private int m_HealingPerShot;
@@ -17,6 +18,7 @@ public class BloodSwordWeapon : Weapon
     [SerializeField] private GameObject m_ProjectilePrefab;
     [SerializeField] private float m_TimeOfBuff;
     [SerializeField] private KeyCode m_BuffKeyCode = KeyCode.Mouse1;
+    [SerializeField] private int m_BuffedAttackAmmo = 3;
     public bool m_Buffed;
     public bool IsBuffing;
     [Space] 
@@ -29,6 +31,7 @@ public class BloodSwordWeapon : Weapon
     public bool IsOnAttack;
     public int CurrentShootID;
     private float m_LastAttackTime;
+    private float m_LastBuffAttack;
 
     protected override void Awake()
     {
@@ -60,6 +63,7 @@ public class BloodSwordWeapon : Weapon
 
     private void BuffAttack()
     {
+        m_LastBuffAttack = Time.time;
         OnBuffedChanged?.Invoke(false);
         OnBuffedAttack?.Invoke();
         var l_BubbleGo = Instantiate(m_ProjectilePrefab);
@@ -68,13 +72,18 @@ public class BloodSwordWeapon : Weapon
         l_Rocket.Init(this, Holder.FPSController.m_PitchController.forward, 
             m_BubbleSpeed, m_Damage, m_ShootableLayer);
         m_Buffed = false;
+        if (m_CurrentAmmo <= 0)
+        {
+            OnAmmoEmpty?.Invoke();
+            ResetAmmo();
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(m_BuffKeyCode))
+        if (Input.GetKey(m_BuffKeyCode))
         {
-            if (!IsBuffing && !m_Buffed)
+            if (!IsBuffing && !m_Buffed && m_CurrentAmmo > m_BuffedAttackAmmo)
             {
                 StartCoroutine(BuffSword());
             }
@@ -85,7 +94,7 @@ public class BloodSwordWeapon : Weapon
     {
         IsBuffing = true;
         var l_Timer = m_TimeOfBuff;
-        while (l_Timer > 0 && Input.GetKey(m_BuffKeyCode))
+        while (l_Timer > 0 && Input.GetKey(m_BuffKeyCode) && IsPrimary)
         {
             l_Timer -= Time.deltaTime;
             yield return null;
@@ -94,7 +103,7 @@ public class BloodSwordWeapon : Weapon
         {
             m_Buffed = true;
             OnBuffedChanged?.Invoke(true);
-            m_CurrentAmmo -= 3;
+            m_CurrentAmmo -= m_BuffedAttackAmmo;
         }
         IsBuffing = false;
     }
@@ -110,16 +119,18 @@ public class BloodSwordWeapon : Weapon
     protected override void Shoot()
     {
         base.Shoot();
-        var l_Transform = transform;
-        var l_Hits = Physics.SphereCastAll(l_Transform.position + l_Transform.forward * m_Range,
-            m_SphereCastRadius, l_Transform.forward, m_SphereCastRadius, m_ShootableLayer);
+        var l_HolderTransform = Holder.transform;
+        var l_Forward = l_HolderTransform.forward;
+        var l_Hits = Physics.SphereCastAll(l_HolderTransform.position + l_Forward * m_Range,
+            m_SphereCastRadius, l_Forward, m_SphereCastRadius*2, m_ShootableLayer);
         if (l_Hits.Length == 0)
             return;
+        m_Particles.Play();
         foreach (var l_Hit in l_Hits)
         {
+            Debug.Log(l_Hit.point);
             if (l_Hit.transform.TryGetComponent(out IShootable l_Shootable))
             {
-                Debug.Log("HIT SOMETHING");
                 l_Shootable.HandleShooted(m_Damage);
                 m_PlayerHealth.Heal(m_HealingPerShot);
             }
@@ -128,7 +139,7 @@ public class BloodSwordWeapon : Weapon
 
     public override bool CanShoot()
     {
-        return base.CanShoot() && !IsOnAttack;
+        return base.CanShoot() && !IsOnAttack && !IsBuffing && Time.time - m_LastBuffAttack > 0.5f;
     }
 
     protected override bool CanAim()

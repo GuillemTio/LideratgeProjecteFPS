@@ -14,6 +14,11 @@ public class WeaponHolder : MonoBehaviour
     public FPSController FPSController { get; private set; }
     public Camera RaycastCam => m_RaycastCam;
     public Crosshair Crosshair => m_Crosshair;
+
+    public CPoolElements MetaldDecalPool;
+    public CPoolElements StoneDecalPool;
+    [SerializeField] private GameObject m_MetalDecal;
+    [SerializeField] private GameObject m_StoneDecal;
     
     [SerializeField] private Camera m_RaycastCam;
     [SerializeField] private Crosshair m_Crosshair;
@@ -30,11 +35,12 @@ public class WeaponHolder : MonoBehaviour
     Queue<Weapon> m_BackWeapons = new();
     public Action<Weapon> OnWeaponChanged;
 
-    
-    private bool m_HasChangedLastFrame;
+    public bool m_HasChangedThisFrame;
     private void Awake()
     {
         FPSController = GetComponentInParent<FPSController>();
+        MetaldDecalPool = new CPoolElements(m_MetalDecal, 10, null);
+        StoneDecalPool = new CPoolElements(m_StoneDecal, 10, null);
     }
 
     void Start()
@@ -51,7 +57,6 @@ public class WeaponHolder : MonoBehaviour
 
         OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
         UpdatePairState(null);
-        m_HasChangedLastFrame = true;
     }
 
     private void UpdatePairState(Weapon seathedWeapon)
@@ -63,6 +68,8 @@ public class WeaponHolder : MonoBehaviour
         }
         else
         {
+            m_Pair.PrimaryWeapon.InTransition = true;
+            m_Pair.SecondaryWeapon.InTransition = true;
             StartCoroutine(DrawWhenOtherSeathed(seathedWeapon));
         }
     }
@@ -85,12 +92,11 @@ public class WeaponHolder : MonoBehaviour
     private void OnAmmoEmpty()
     {
         LoadNextWeapon();
-        
     }
 
     private void LoadNextWeapon()
     {
-        m_HasChangedLastFrame = true;
+        m_HasChangedThisFrame = true;
         var l_SeathedWeapon = m_Pair.PrimaryWeapon;
         m_Pair.PrimaryWeapon.Seath();
         m_BackWeapons.Enqueue(m_Pair.PrimaryWeapon);
@@ -112,12 +118,10 @@ public class WeaponHolder : MonoBehaviour
             ChangeWeapon();
             return;
         }
-        if (Input.GetKey(m_ShootKeyCode) && !m_HasChangedLastFrame)
+        if (Input.GetKey(m_ShootKeyCode))
         {
             TryShootWeapon();
         }
-
-        m_HasChangedLastFrame = false;
     }
 
     private void TryAim()
@@ -127,7 +131,7 @@ public class WeaponHolder : MonoBehaviour
 
     private void ChangeWeapon()
     {
-        m_HasChangedLastFrame = true;
+        m_HasChangedThisFrame = true;
         m_Pair.SwapWeapons();
         OnWeaponChanged?.Invoke(m_Pair.PrimaryWeapon);
         m_Pair.SecondaryWeapon.Seath();
@@ -136,6 +140,11 @@ public class WeaponHolder : MonoBehaviour
 
     private void TryShootWeapon()
     {
+        // if (m_HasChangedThisFrame)
+        // {
+        //     m_HasChangedThisFrame = false;
+        //     return;
+        // }
         m_Pair.PrimaryWeapon.TryShoot();
     }
 }

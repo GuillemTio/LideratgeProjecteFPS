@@ -114,7 +114,7 @@ ModelImporter:
     skeleton:
     - name: ROBOT_IDLE(Clone)
       parentName: 
-      position: {x: -0.15976697, y: 0.060275383, z: 1.1279866e-17}
+      position: {x: -0.004058081, y: 0.0015309947, z: 2.8650858e-19}
       rotation: {x: -0.7071067, y: 0, z: -0, w: 0.7071069}
       scale: {x: 39.37008, y: 39.37008, z: 39.37008}
     armTwist: 0.5
@@ -124,7 +124,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.0254
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

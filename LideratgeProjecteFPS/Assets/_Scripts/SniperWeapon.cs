@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 public class SniperWeapon : Weapon
@@ -15,10 +16,19 @@ public class SniperWeapon : Weapon
         
         var l_Ray = Holder.RaycastCam.ViewportPointToRay(l_CameraCenter + l_DispersionOffset);
         
-        if (Physics.Raycast(l_Ray, out RaycastHit l_RaycastHit, m_Range))
+        if (Physics.Raycast(l_Ray, out RaycastHit l_RaycastHit, m_Range, m_ShootableLayer))
         {
             l_RaycastHit.transform.GetComponent<IShootable>()?.HandleShooted(m_Damage);
-            Debug.DrawLine(l_RaycastHit.point, l_RaycastHit.point + l_RaycastHit.normal, Color.red, 5f);
+            GameObject l_Decal;
+            if (l_RaycastHit.transform.CompareTag("Metal"))
+                l_Decal = Holder.MetaldDecalPool.GetNextElement();
+            else
+                l_Decal = Holder.StoneDecalPool.GetNextElement();
+            l_Decal.transform.position = l_RaycastHit.point;
+            l_Decal.transform.rotation = Quaternion.LookRotation(l_RaycastHit.normal);
+            l_Decal.SetActive(false);                
+            l_Decal.SetActive(true);                
+            l_Decal.transform.parent = l_RaycastHit.transform;
         }
     }
 

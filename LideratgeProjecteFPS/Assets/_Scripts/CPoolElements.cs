@@ -1,27 +1,21 @@
 ﻿using JetBrains.Annotations;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CPoolElements
 {
     private List<GameObject> m_ElementsList = new();
-    int m_CurrentIndex;
+    private int m_CurrentIndex;
+    private GameObject m_Prefab;
 
     public CPoolElements (GameObject prefab, int num, Transform parent)
     {
-        for (int i = 0; i < num; i++)
-        {
-            GameObject l_Instance = GameObject.Instantiate(prefab);
-            m_ElementsList.Add(l_Instance);
-            l_Instance.transform.SetParent(parent);
-        }
+        m_Prefab = prefab;
     }
 
     public GameObject GetNextElement()
     {
-        m_CurrentIndex++;
-        if (m_CurrentIndex >= m_ElementsList.Count)
-            m_CurrentIndex = 0;
-        return m_ElementsList[m_CurrentIndex];
+        return GameObject.Instantiate(m_Prefab, new Vector3(-1000,-1000,0f),Quaternion.identity);
     }
 }
