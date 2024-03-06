@@ -1695,6 +1695,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
+      propertyPath: m_Damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
+      propertyPath: m_Explosion
+      value: 
+      objectReference: {fileID: 4090769134330258288, guid: 12b2c1dd3292410448e372ea6052295d, type: 3}
+    - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
+      propertyPath: m_BlastRadius
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5392089854430665044, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_Damage
       value: 50

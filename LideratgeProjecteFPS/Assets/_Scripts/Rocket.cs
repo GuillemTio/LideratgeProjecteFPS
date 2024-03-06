@@ -1,4 +1,5 @@
-﻿    using UnityEngine;
+﻿    using Unity.Mathematics;
+    using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Rocket : MonoBehaviour
     private int m_DamagePlayer;
     private float m_BlastRadius;
     private LayerMask m_ShootableLayer;
+    private GameObject m_Decal;
 
     private void Awake()
     {
@@ -17,7 +19,7 @@ public class Rocket : MonoBehaviour
     }
 
     public void Init(Weapon weapon, Vector3 forward, float speed, int damage, int damagePlayer, 
-        float blastRadius, LayerMask shootableLayer)
+        float blastRadius, LayerMask shootableLayer, GameObject decal)
     {
         m_Weapon = weapon;
         m_Rb.isKinematic = false;
@@ -26,6 +28,7 @@ public class Rocket : MonoBehaviour
         m_DamagePlayer = damagePlayer;
         m_BlastRadius = blastRadius;
         m_ShootableLayer = shootableLayer;
+        m_Decal = decal;
         Physics.IgnoreCollision(GetComponent<Collider>(), m_Weapon.Holder.FPSController.GetComponentInChildren<Collider>());
     }
 
@@ -51,7 +54,8 @@ public class Rocket : MonoBehaviour
                 l_Hit.transform.GetComponent<IShootable>()?.HandleShooted(m_Damage);
             }
         }
-        
+
+        Instantiate(m_Decal, transform.position, quaternion.identity);
         Destroy(gameObject);
     }
 }

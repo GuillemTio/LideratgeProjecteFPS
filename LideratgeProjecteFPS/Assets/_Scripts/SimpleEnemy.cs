@@ -6,6 +6,7 @@ class SimpleEnemy : MonoBehaviour, IShootable, IHealthSystem
     [SerializeField] int startHealth;
     private int currentHealth;
 
+    [SerializeField] private GameObject m_EnemyExplosion;
     [SerializeField] int damage;
     [SerializeField] float meleeAttackDistance;
     [SerializeField] float attackRate;
@@ -71,6 +72,7 @@ class SimpleEnemy : MonoBehaviour, IShootable, IHealthSystem
     {
         gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("PointsManager").GetComponent<PointsManager>().EnemyKilled();
+        Instantiate(m_EnemyExplosion, transform.position + Vector3.up * 1, Quaternion.identity);
         // de momento lo desactivo, si nos interesa destruirlo o pasarlo por un game manager ya lo vemos.
     }
 
