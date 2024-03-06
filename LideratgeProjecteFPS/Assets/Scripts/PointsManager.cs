@@ -9,7 +9,7 @@ public class PointsManager : MonoBehaviour
     float killStreakMultiplier;
     private bool isOnKillStreak = false;
     private float killTimer;
-    private float currentPoints;
+    public float CurrentPoints;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class PointsManager : MonoBehaviour
     {
         isOnKillStreak = true;
         killTimer = 0;
-        currentPoints += pointsPerKill * killStreakMultiplier;
+        CurrentPoints += pointsPerKill * killStreakMultiplier;
         killStreakMultiplier += addToMultiplierForEachKill;
     }
 }
