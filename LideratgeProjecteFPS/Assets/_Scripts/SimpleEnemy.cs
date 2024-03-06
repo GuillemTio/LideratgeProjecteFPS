@@ -12,6 +12,8 @@ class SimpleEnemy : MonoBehaviour, IShootable, IHealthSystem
     private float attackTimer;
     GameObject player;
 
+    public Animator animator;
+
 
     void Start()
     {
@@ -69,9 +71,14 @@ class SimpleEnemy : MonoBehaviour, IShootable, IHealthSystem
 
     private void Die()
     {
+        animator.SetTrigger("Dead");
+        // de momento lo desactivo, si nos interesa destruirlo o pasarlo por un game manager ya lo vemos.
+    }
+
+    public void DieAnimation()
+    {
         gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("PointsManager").GetComponent<PointsManager>().EnemyKilled();
-        // de momento lo desactivo, si nos interesa destruirlo o pasarlo por un game manager ya lo vemos.
     }
 
     public bool HandleShooted(float damage)

@@ -8,6 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     private GameObject player;
     public TypesOfEnemyBehaviours thisEnemyBehaviour;
+    public Animator animator;
     private NavMeshAgent navMeshAgent;
     public float maxDistanceFromPlayer = 1.3f;
 
@@ -42,11 +43,13 @@ public class EnemyBehaviour : MonoBehaviour
         if (!(DistanceToPlayer() < maxDistanceFromPlayer))
         {
             navMeshAgent.isStopped = false;
+            animator.SetBool("IsMoving", true);
             navMeshAgent.SetDestination(player.transform.position);
         }
         else
         {
             navMeshAgent.isStopped = true;
+            animator.SetBool("IsMoving", false);
         }
     }
 
