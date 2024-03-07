@@ -56,6 +56,7 @@ public class Rocket : MonoBehaviour
         }
 
         Instantiate(m_Decal, transform.position, quaternion.identity);
-        Destroy(gameObject);
+        GetComponent<MeshRenderer>().enabled = false;
+        Destroy(gameObject, 4f);
     }
 }

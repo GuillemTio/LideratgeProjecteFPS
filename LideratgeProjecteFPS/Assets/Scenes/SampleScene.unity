@@ -1635,25 +1635,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 806097855190216315, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: INVINCIBLE
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1407776900641988276, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453600575440857865, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453600575440857865, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453600575440857865, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3048434290279578138, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1694,26 +1678,6 @@ PrefabInstance:
     - target: {fileID: 3048434290279578138, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_Damage
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_Explosion
-      value: 
-      objectReference: {fileID: 4090769134330258288, guid: 12b2c1dd3292410448e372ea6052295d, type: 3}
-    - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_BlastRadius
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392089854430665044, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_Damage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392089854430665044, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_HealingPerShot
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

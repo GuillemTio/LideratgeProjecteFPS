@@ -4,13 +4,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class SniperWeapon : Weapon
 {
+    [SerializeField] private ParticleSystem m_MuzzleFlash;
+    [SerializeField] private ParticleSystem m_Cartridge;
+    
     protected override void Shoot()
     {
         base.Shoot();
         
         Vector3 l_CameraCenter = new(0.50f, 0.5f, 0.0f);
         Vector3 l_DispersionOffset = Holder.Crosshair.GetRandomPointInsideCrosshair();
-        
+        m_MuzzleFlash.Play();
+        m_Cartridge.Play();
         l_DispersionOffset.x /= Holder.RaycastCam.pixelWidth;
         l_DispersionOffset.y /= Holder.RaycastCam.pixelHeight;
         

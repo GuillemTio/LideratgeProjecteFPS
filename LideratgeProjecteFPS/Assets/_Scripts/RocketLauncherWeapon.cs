@@ -24,6 +24,7 @@ public class RocketLauncherWeapon : Weapon
         base.Shoot();
         var l_RocketGo = Instantiate(m_RocketPrefab);
         l_RocketGo.transform.position = m_RocketCreationLocation.position;
+        l_RocketGo.transform.rotation = transform.rotation;
         var l_Rocket = l_RocketGo.GetComponent<Rocket>();
         l_Rocket.Init(this, Holder.FPSController.m_PitchController.forward, 
             m_ProjectileSpeed, m_Damage, m_SelfDamage, 
