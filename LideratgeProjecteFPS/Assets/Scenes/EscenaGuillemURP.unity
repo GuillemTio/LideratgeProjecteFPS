@@ -777,17 +777,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 806097855190216315, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: INVINCIBLE
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1407776900641988276, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2894068371468690297, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 1015
       objectReference: {fileID: 0}
     - target: {fileID: 3048434290279578138, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -828,18 +820,6 @@ PrefabInstance:
     - target: {fileID: 3048434290279578138, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_ShootableLayer.m_Bits
-      value: 705
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392089854430665044, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_ShootableLayer.m_Bits
-      value: 641
-      objectReference: {fileID: 0}
-    - target: {fileID: 8514390898437435477, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
-      propertyPath: m_ShootableLayer.m_Bits
-      value: 641
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

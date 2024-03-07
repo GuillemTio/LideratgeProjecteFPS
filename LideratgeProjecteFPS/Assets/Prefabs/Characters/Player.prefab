@@ -469,7 +469,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 1015
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
-  INVINCIBLE: 1
+  INVINCIBLE: 0
 --- !u!136 &5409656322308854878
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6620,7 +6620,7 @@ MonoBehaviour:
   m_ShootDelay: 0.6
   m_ShootableLayer:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 641
   InTransition: 0
   m_Particles: {fileID: 2971332117293775136}
   m_HealingPerShot: 0
@@ -7326,7 +7326,7 @@ MonoBehaviour:
   m_ShootDelay: 0
   m_ShootableLayer:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 641
   InTransition: 0
 --- !u!114 &7233432575282946168
 MonoBehaviour:
@@ -7462,7 +7462,7 @@ MonoBehaviour:
   m_ShootDelay: 0.1
   m_ShootableLayer:
     serializedVersion: 2
-    m_Bits: 193
+    m_Bits: 705
   InTransition: 0
   m_SelfDamage: 0
   m_ReloadTime: 1
@@ -7473,6 +7473,7 @@ MonoBehaviour:
   m_RocketCreationLocation: {fileID: 7342378078983904642}
   m_ProjectileSpeed: 10
   m_BlastRadius: 2
+  m_Explosion: {fileID: 0}
 --- !u!114 &4892421448379918700
 MonoBehaviour:
   m_ObjectHideFlags: 0
