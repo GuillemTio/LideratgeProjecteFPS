@@ -1701,7 +1701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_SelfDamage
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4589103120604650003, guid: aa4d58577e5f4d64485f01a1eaea9faf, type: 3}
       propertyPath: m_BlastRadius
