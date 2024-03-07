@@ -6622,7 +6622,7 @@ MonoBehaviour:
   m_ShootDelay: 0.6
   m_ShootableLayer:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 641
   InTransition: 0
   m_Particles: {fileID: 2971332117293775136}
   m_HealingPerShot: 30
@@ -7328,7 +7328,7 @@ MonoBehaviour:
   m_ShootDelay: 0
   m_ShootableLayer:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 641
   InTransition: 0
   m_MuzzleFlash: {fileID: 8368914372537609198}
   m_Cartridge: {fileID: 2462256804082275302}
@@ -7466,7 +7466,7 @@ MonoBehaviour:
   m_ShootDelay: 0.1
   m_ShootableLayer:
     serializedVersion: 2
-    m_Bits: 193
+    m_Bits: 705
   InTransition: 0
   m_SelfDamage: 0
   m_ReloadTime: 1
