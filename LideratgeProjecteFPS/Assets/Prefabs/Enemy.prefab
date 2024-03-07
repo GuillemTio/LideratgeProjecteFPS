@@ -553,6 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  m_EnemyExplosion: {fileID: 4090769134330258288, guid: ff453042e8584904f9f509292a74427c, type: 3}
   damage: 6
   meleeAttackDistance: 2
   attackRate: 1

@@ -16,6 +16,7 @@ public class RocketLauncherWeapon : Weapon
     [SerializeField] private Transform m_RocketCreationLocation;
     [SerializeField] private float m_ProjectileSpeed;
     [SerializeField] private float m_BlastRadius;
+    [SerializeField] private GameObject m_Explosion;
     public bool IsReloading { get; private set; }
     private bool m_CancelledReload;
     protected override void Shoot()
@@ -26,7 +27,7 @@ public class RocketLauncherWeapon : Weapon
         var l_Rocket = l_RocketGo.GetComponent<Rocket>();
         l_Rocket.Init(this, Holder.FPSController.m_PitchController.forward, 
             m_ProjectileSpeed, m_Damage, m_SelfDamage, 
-            m_BlastRadius, m_ShootableLayer);
+            m_BlastRadius, m_ShootableLayer, m_Explosion);
     }
     
     private void Update()
