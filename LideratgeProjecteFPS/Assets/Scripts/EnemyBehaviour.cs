@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof (NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyBehaviour : MonoBehaviour
 {
     private GameObject player;
@@ -11,6 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     public Animator animator;
     private NavMeshAgent navMeshAgent;
     public float maxDistanceFromPlayer = 1.3f;
+    public bool stopped;
 
     // Start is called before the first frame update
     void Start()
@@ -40,16 +39,24 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void ChasingPlayerBehaviour()
     {
-        if (!(DistanceToPlayer() < maxDistanceFromPlayer))
+        if (!stopped)
         {
-            navMeshAgent.isStopped = false;
-            animator.SetBool("IsMoving", true);
-            navMeshAgent.SetDestination(player.transform.position);
+
+            if (!(DistanceToPlayer() < maxDistanceFromPlayer))
+            {
+                navMeshAgent.isStopped = false;
+                animator.SetBool("IsMoving", true);
+                navMeshAgent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                navMeshAgent.isStopped = true;
+                animator.SetBool("IsMoving", false);
+            }
         }
         else
         {
             navMeshAgent.isStopped = true;
-            animator.SetBool("IsMoving", false);
         }
     }
 
