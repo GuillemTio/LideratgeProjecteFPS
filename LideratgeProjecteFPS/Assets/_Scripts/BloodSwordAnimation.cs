@@ -8,6 +8,24 @@ public class BloodSwordAnimation : WeaponAnimation
     private static readonly int Charging = Animator.StringToHash("Charging");
     private static readonly int ShootID = Animator.StringToHash("ShootID");
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        m_Weapon.OnBuffedAttack += OnBuffedAttack;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        m_Weapon.OnBuffedAttack -= OnBuffedAttack;
+    }
+
+    private void OnBuffedAttack()
+    {
+        base.OnShoot();
+        m_Animator.SetInteger(ShootID, 0);
+    }
+
     protected override void Awake()
     {
         base.Awake();

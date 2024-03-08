@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class BloodSwordWeapon : Weapon
 {
+
+    public GameObject m_Trail;
+    
     public Action<bool> OnBuffedChanged;
     public Action OnBuffedAttack;
     public ParticleSystem m_Particles;
@@ -37,6 +40,7 @@ public class BloodSwordWeapon : Weapon
     {
         base.Awake();
         m_PlayerHealth = GetComponentInParent<PlayerHealth>();
+        m_Trail.SetActive(false);
     }
 
     public override void TryShoot()
@@ -63,6 +67,7 @@ public class BloodSwordWeapon : Weapon
 
     private void BuffAttack()
     {
+        OnBuffedAttack?.Invoke();
         m_LastBuffAttack = Time.time;
         OnBuffedChanged?.Invoke(false);
         OnBuffedAttack?.Invoke();
@@ -81,6 +86,11 @@ public class BloodSwordWeapon : Weapon
 
     private void Update()
     {
+        if (!IsOnAttack && !m_Buffed && !IsBuffing)
+        {
+            m_Trail.SetActive(false);
+        }
+        
         if (Input.GetKey(m_BuffKeyCode))
         {
             if (!IsBuffing && !m_Buffed && m_CurrentAmmo > m_BuffedAttackAmmo)
@@ -92,6 +102,7 @@ public class BloodSwordWeapon : Weapon
 
     private IEnumerator BuffSword()
     {
+        m_Trail.SetActive(true);
         IsBuffing = true;
         var l_Timer = m_TimeOfBuff;
         while (l_Timer > 0 && Input.GetKey(m_BuffKeyCode) && IsPrimary)
@@ -104,18 +115,20 @@ public class BloodSwordWeapon : Weapon
             m_Buffed = true;
             OnBuffedChanged?.Invoke(true);
             m_CurrentAmmo -= m_BuffedAttackAmmo;
+            m_Trail.SetActive(true);
         }
         IsBuffing = false;
     }
 
     private void Attack()
     {
+        m_Trail.SetActive(true);
         BeforeShoot();
         Invoke(nameof(Shoot), m_ShootDelay);
         IsOnAttack = true;
         m_LastAttackTime = Time.time;
     }
-
+    
     protected override void Shoot()
     {
         base.Shoot();
@@ -139,6 +152,7 @@ public class BloodSwordWeapon : Weapon
 
     public override bool CanShoot()
     {
+        
         return base.CanShoot() && !IsOnAttack && !IsBuffing && Time.time - m_LastBuffAttack > 0.5f;
     }
 
@@ -147,6 +161,7 @@ public class BloodSwordWeapon : Weapon
         return base.CanAim() && m_Buffed;
     }
 
+    
     private bool MustAttackCombo()
     {
         return (Time.time - m_LastAttackTime) < m_ComboAttackTimeBuffer;

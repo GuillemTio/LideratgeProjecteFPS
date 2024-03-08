@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 8803787069057781909}
   - component: {fileID: 3531357330148228208}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: Enemy 3
   m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,9 +554,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 100
   m_EnemyExplosion: {fileID: 4090769134330258288, guid: ff453042e8584904f9f509292a74427c, type: 3}
-  damage: 6
-  meleeAttackDistance: 2
-  attackRate: 1
+  damage: 3
+  meleeAttackDistance: 3
+  attackRate: 0.5
   animator: {fileID: 1902312405550777951}
 --- !u!114 &6661588434526891148
 MonoBehaviour:
@@ -572,8 +572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisEnemyBehaviour: 0
   animator: {fileID: 1902312405550777951}
-  maxDistanceFromPlayer: 1.3
-  attacking: 0
+  maxDistanceFromPlayer: 4
+  stopped: 0
 --- !u!195 &8803787069057781909
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -584,7 +584,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -670,7 +670,7 @@ PrefabInstance:
     - target: {fileID: -1920399460590606178, guid: 86155f5c04b624b44892601a54aeb967, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5cad220288b3d8f4fb5d9d214c9903ce, type: 2}
+      objectReference: {fileID: 2100000, guid: 920a70174d75a7f439bcaa37eda16ad1, type: 2}
     - target: {fileID: 919132149155446097, guid: 86155f5c04b624b44892601a54aeb967, type: 3}
       propertyPath: m_Name
       value: ROBOT_IDLE 1

@@ -44,7 +44,10 @@ public class FPSController : MonoBehaviour
     public KeyCode m_ReloadKeyCode = KeyCode.R;
     public KeyCode m_EnterKeyCode = KeyCode.KeypadEnter;
     public int m_ShootMouseButton = 0;
+    private float drag;
 
+    public float airSpeed;
+    public float groundedSpeed;
     [Header("DebugInput")]
     bool m_AngleLocked = false;
     bool m_AimLocked = true;
@@ -53,7 +56,7 @@ public class FPSController : MonoBehaviour
 
     void Start()
     {
-
+        drag = m_RigidBody.drag;
         Cursor.lockState = CursorLockMode.Locked;
         m_Pitch = m_PitchController.localRotation.eulerAngles.x;
         m_Yaw = transform.rotation.eulerAngles.y;
@@ -74,17 +77,25 @@ public class FPSController : MonoBehaviour
         }
 #endif
 
-
+        
         //Debug.Log(m_RigidBody.velocity.magnitude);
 
         m_IsOnGround = Physics.Raycast(m_PlayerBody.transform.position, Vector3.down, m_PlayerHeight / 2 + 0.2f, m_GroundLayer);
-
+        
         if (m_IsOnGround)
         {
             if (Input.GetKeyDown(m_JumpKeyCode))
             {
                 m_RigidBody.AddForce(transform.up * m_JumpForce, ForceMode.Impulse);
             }
+
+            m_RigidBody.drag = drag;
+            m_MoveSpeed = groundedSpeed;
+        }
+        else
+        {
+            m_RigidBody.drag = 0;
+            m_MoveSpeed = airSpeed;
         }
 
 

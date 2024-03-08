@@ -1,6 +1,8 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IHealthSystem
+public class PlayerHealth : MonoBehaviour, IHealthSystem, IShootable
 {
     public float HealthFraction => Mathf.Clamp01((float)currentHealth/(float)startHealth);
     public int CurrentHealth => currentHealth;
@@ -8,6 +10,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     private int currentHealth;
     [SerializeField] bool INVINCIBLE;
 
+    public Action OnDead;
     private void Start()
     {
         currentHealth = startHealth;
@@ -45,5 +48,12 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     private void Die()
     {
         Debug.Log("Player DEAD");
+        OnDead?.Invoke();        
+    }
+
+    public bool HandleShooted(int damage)
+    {
+        TakeDamage(damage);
+        return true;
     }
 }

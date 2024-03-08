@@ -10,7 +10,7 @@ public class Rocket : MonoBehaviour
     private float m_BlastRadius;
     private LayerMask m_ShootableLayer;
     private GameObject m_Decal;
-
+    private bool m_CanExplode;
     private void Awake()
     {
         m_Rb = GetComponent<Rigidbody>();
@@ -21,6 +21,7 @@ public class Rocket : MonoBehaviour
     public void Init(Weapon weapon, Vector3 forward, float speed, int damage, int damagePlayer, 
         float blastRadius, LayerMask shootableLayer, GameObject decal)
     {
+        m_CanExplode = true;
         m_Weapon = weapon;
         m_Rb.isKinematic = false;
         m_Rb.velocity = speed * forward;
@@ -34,7 +35,10 @@ public class Rocket : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Explode();
+        if (m_CanExplode)
+        {
+            Explode();
+        }
     }
 
     private void Explode()
@@ -47,6 +51,7 @@ public class Rocket : MonoBehaviour
         {
             if (l_Hit.transform == m_Weapon.Holder.FPSController.transform)
             {
+                Debug.Log(("DAMAGED PLAYER"));
                 l_Hit.transform.GetComponent<IShootable>()?.HandleShooted(m_DamagePlayer);
             }
             else
@@ -57,6 +62,9 @@ public class Rocket : MonoBehaviour
 
         Instantiate(m_Decal, transform.position, quaternion.identity);
         GetComponent<MeshRenderer>().enabled = false;
+        m_Rb.isKinematic = true;
+        m_Rb.useGravity = false;
+        m_CanExplode = false;
         Destroy(gameObject, 4f);
     }
 }

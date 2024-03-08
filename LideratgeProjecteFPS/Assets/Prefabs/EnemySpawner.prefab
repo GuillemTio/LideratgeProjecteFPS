@@ -52,5 +52,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   enemyPrefabs:
-  - {fileID: 9130702898143865572, guid: 211c9a97c2e8abb43838deae41c1aded, type: 3}
+  - {fileID: 9130702898143865572, guid: 4ed1de3c15c645c44bd217ba5b46bd96, type: 3}
+  - {fileID: 9130702898143865572, guid: 83f63d7ce0c4a664f8fd6ac15606105b, type: 3}
+  - {fileID: 9130702898143865572, guid: 283cf29a0ac16fe49950b0b8911bfd92, type: 3}
   enemyBehaviour: 0
