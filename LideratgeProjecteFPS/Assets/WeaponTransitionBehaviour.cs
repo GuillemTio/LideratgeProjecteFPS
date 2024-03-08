@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class WeaponTransitionBehaviour : StateMachineBehaviour
@@ -32,9 +29,8 @@ public class WeaponTransitionBehaviour : StateMachineBehaviour
         m_Weapon.InTransition = false;
         
         //Para empezar playear la animacion idle del arma y que quede justo con el swap
-        var ac = animator.runtimeAnimatorController as AnimatorController;
-        var idle = ac.layers[0].stateMachine.states[0].state.name;
-        animator.Play(idle, 0, 0.0f);
+        // var idle = ac.[0].stateMachine.states[0].state.name;
+        animator.Play("IDLE", 0, 0.0f);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
