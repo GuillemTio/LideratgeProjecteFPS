@@ -608,14 +608,14 @@ MonoBehaviour:
   m_MaxPitch: 60
   m_PitchSpeed: 180
   m_YawSpeed: 360
-  m_MoveSpeed: 20
+  m_MoveSpeed: 25
   m_RigidBody: {fileID: 4021877221153395660}
   m_PlayerBody: {fileID: 999197568393972178}
   m_PlayerHeight: 2
   m_GroundLayer:
     serializedVersion: 2
     m_Bits: 128
-  m_JumpForce: 5
+  m_JumpForce: 13.5
   m_Camera: {fileID: 2894068371468690297}
   m_LeftKeyCode: 97
   m_RightKeyCode: 100
@@ -6614,10 +6614,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MeshGameObject: {fileID: 1877815581457403807}
-  m_MaxAmmo: 10
+  m_MaxAmmo: 15
   m_FireRate: 0
   m_Damage: 50
-  m_Range: 1
+  m_Range: 1.5
   m_CurrentAmmo: 0
   m_ShootDelay: 0.6
   m_ShootableLayer:
@@ -7322,7 +7322,7 @@ MonoBehaviour:
   m_MeshGameObject: {fileID: 8264763075987777671}
   m_MaxAmmo: 10
   m_FireRate: 0.5
-  m_Damage: 36
+  m_Damage: 70
   m_Range: 100
   m_CurrentAmmo: 0
   m_ShootDelay: 0
@@ -7458,9 +7458,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MeshGameObject: {fileID: 6261618604387087082}
-  m_MaxAmmo: 10
+  m_MaxAmmo: 4
   m_FireRate: 0.5
-  m_Damage: 20
+  m_Damage: 1000
   m_Range: 100
   m_CurrentAmmo: 0
   m_ShootDelay: 0.1
@@ -7468,15 +7468,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 705
   InTransition: 0
-  m_SelfDamage: 0
+  m_SelfDamage: 15
   m_ReloadTime: 1
   m_SpeedDeboostPct: 0
   m_ReloadKeyCode: 114
   m_Reloaded: 0
   m_RocketPrefab: {fileID: 3560130580352134158, guid: 797382680ad6d5048a2a4d636e8f003a, type: 3}
   m_RocketCreationLocation: {fileID: 7342378078983904642}
-  m_ProjectileSpeed: 10
-  m_BlastRadius: 2.5
+  m_ProjectileSpeed: 17
+  m_BlastRadius: 3.5
   m_Explosion: {fileID: 4090769134330258288, guid: 12b2c1dd3292410448e372ea6052295d, type: 3}
 --- !u!114 &4892421448379918700
 MonoBehaviour:
